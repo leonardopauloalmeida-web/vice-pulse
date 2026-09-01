@@ -127,10 +127,6 @@ body {
     box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
 }
 
-/* ============================================
-GTA VI - TÍTULO MENOR E NEON ROXO
-============================================ */
-
 .hero h1 {
     font-family: "Anton", sans-serif;
     font-size: clamp(42px, 7vw, 70px);
@@ -150,10 +146,6 @@ GTA VI - TÍTULO MENOR E NEON ROXO
     color: #ff00ff;
     text-transform: uppercase;
 }
-
-/* ============================================
-DIAS - MENOR E NEON ROXO
-============================================ */
 
 .days {
     font-size: clamp(70px, 11vw, 110px);
@@ -182,10 +174,6 @@ DIAS - MENOR E NEON ROXO
             0 0 120px rgba(255, 0, 255, 0.2);
     }
 }
-
-/* ============================================
-TIMER - MENOR E NEON ROXO
-============================================ */
 
 .timer {
     display: grid;
@@ -227,10 +215,6 @@ TIMER - MENOR E NEON ROXO
     text-transform: uppercase;
 }
 
-/* ============================================
-BARRA DE PROGRESSO - NEON ROXO
-============================================ */
-
 .progress {
     margin-top: 16px;
     height: 6px;
@@ -247,10 +231,6 @@ BARRA DE PROGRESSO - NEON ROXO
     transition: width 0.5s ease;
 }
 
-/* ============================================
-RELEASE - MENOR
-============================================ */
-
 .release {
     margin-top: 12px;
     letter-spacing: 2px;
@@ -259,10 +239,6 @@ RELEASE - MENOR
     text-transform: uppercase;
     color: #ff00ff;
 }
-
-/* ============================================
-SEÇÕES
-============================================ */
 
 .section {
     padding: 90px 7%;
@@ -275,10 +251,6 @@ SEÇÕES
     font-family: "Anton", sans-serif;
     letter-spacing: 1px;
 }
-
-/* ============================================
-CARDS
-============================================ */
 
 .cards {
     display: grid;
@@ -725,7 +697,6 @@ PÁGINA DE PERSONAGENS - ESTILO VICE CITY
     text-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
 }
 
-/* PERSONAGENS - IMAGENS MENORES */
 .personagem-detalhe {
     padding: 60px 7%;
 }

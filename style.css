@@ -23,7 +23,6 @@ body {
     overflow-x: hidden;
 }
 
-/* SCROLLBAR */
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -35,7 +34,6 @@ body {
     border-radius: 999px;
 }
 
-/* NAVBAR */
 .navbar {
     position: fixed;
     top: 0;
@@ -96,7 +94,6 @@ body {
     width: 100%;
 }
 
-/* HERO */
 .hero {
     height: 100vh;
     min-height: 550px;
@@ -166,7 +163,6 @@ body {
     }
 }
 
-/* TIMER */
 .timer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -222,7 +218,6 @@ body {
     opacity: 0.7;
 }
 
-/* SEÇÕES */
 .section {
     padding: 90px 7%;
 }
@@ -235,7 +230,6 @@ body {
     letter-spacing: 1px;
 }
 
-/* CARDS */
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -243,8 +237,7 @@ body {
 }
 
 .card,
-.video-card,
-.character {
+.video-card {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 22px;
     overflow: hidden;
@@ -254,8 +247,7 @@ body {
 }
 
 .card:hover,
-.video-card:hover,
-.character:hover {
+.video-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 0 35px rgba(255, 60, 160, 0.35);
 }
@@ -297,10 +289,6 @@ body {
     line-height: 1.6;
 }
 
-/* ============================================
-LINK PERSONAGENS ABAIXO DA CAPA
-============================================ */
-
 .capa-personagens-link {
     margin-top: 20px;
     padding-top: 16px;
@@ -324,7 +312,27 @@ LINK PERSONAGENS ABAIXO DA CAPA
     opacity: 1;
 }
 
-/* VÍDEOS */
+.vice-btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #ff00ff, #ff0080);
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+    border: none;
+    cursor: pointer;
+}
+
+.vice-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(255, 0, 255, 0.6);
+}
+
 .video-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -432,7 +440,6 @@ LINK PERSONAGENS ABAIXO DA CAPA
     margin-right: 4px;
 }
 
-/* MAPA */
 .map-card {
     border-radius: 28px;
     overflow: hidden;
@@ -444,7 +451,6 @@ LINK PERSONAGENS ABAIXO DA CAPA
     height: auto;
 }
 
-/* FOOTER */
 footer {
     padding: 50px;
     text-align: center;
@@ -452,7 +458,6 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* ANIMAÇÃO DE ENTRADA */
 .section {
     opacity: 0;
     transform: translateY(30px);
@@ -472,182 +477,167 @@ footer {
 #map { animation-delay: 0.25s; }
 
 /* ============================================
-PÁGINA DE PERSONAGENS
+PÁGINA VICE CITY - RETRÔ ANOS 80
 ============================================ */
 
-.personagens-hero {
-    min-height: 50vh;
-    height: 50vh;
+.vice-hero {
     background: 
-        linear-gradient(rgba(5, 5, 16, 0.5), rgba(5, 5, 16, 0.7)),
+        linear-gradient(rgba(5, 5, 16, 0.4), rgba(5, 5, 16, 0.7)),
         url("assets/bg.jpg") center/cover no-repeat;
+    min-height: 60vh;
+    height: 60vh;
 }
 
-.personagens-hero .hero-content {
-    padding: 30px;
-    width: min(600px, 90vw);
+.vice-hero .hero-content {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 0, 255, 0.3);
+    box-shadow: 0 0 60px rgba(255, 0, 255, 0.2);
 }
 
-.personagens-hero h1 {
-    font-size: clamp(50px, 8vw, 80px);
+/* INTRODUÇÃO */
+.vice-intro {
+    background: linear-gradient(180deg, #0a0a1a, #050510);
+    border-top: 1px solid rgba(255, 0, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 0, 255, 0.1);
 }
 
-.personagem-detalhe {
+.vice-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.vice-texto-destaque {
+    font-size: 22px;
+    line-height: 1.8;
+    color: #ff00ff;
+    font-weight: 500;
+    text-shadow: 0 0 30px rgba(255, 0, 255, 0.2);
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.vice-texto {
+    font-size: 16px;
+    line-height: 1.8;
+    opacity: 0.8;
+}
+
+.vice-game {
     padding: 60px 7%;
 }
 
-.personagem-detalhe.reverse .personagem-container {
+.vice-game.reverse .vice-game-container {
     flex-direction: row-reverse;
 }
 
-.personagem-container {
+.vice-game-container {
     display: flex;
     gap: 50px;
     align-items: center;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 28px;
     padding: 30px;
-    backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.06);
     transition: 0.3s;
 }
 
-.personagem-container:hover {
+.vice-game-container:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0 40px rgba(255, 60, 160, 0.2);
+    box-shadow: 0 0 40px rgba(255, 0, 255, 0.1);
 }
 
-.personagem-imagem {
+.vice-game-info {
+    flex: 1;
+}
+
+.vice-game-info h2 {
+    font-family: "Anton", sans-serif;
+    font-size: 36px;
+    margin: 12px 0 16px;
+    background: linear-gradient(90deg, #ff00ff, #ff0080);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.vice-game-desc {
+    font-size: 14px;
+    opacity: 0.7;
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+.vice-game-historia {
+    font-size: 15px;
+    line-height: 1.8;
+    opacity: 0.85;
+    margin-bottom: 16px;
+}
+
+.vice-curiosidades {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.vice-curiosidades span {
+    background: rgba(255, 255, 255, 0.06);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ============================================
+IMAGEM DA MULHER NA INTRODUÇÃO - NÍTIDA
+============================================ */
+
+.vice-intro-imagem {
+    margin: 25px auto;
+    max-width: 550px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border: 2px solid rgba(255, 0, 255, 0.1);
+}
+
+.vice-intro-imagem img {
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    object-fit: contain;
+    display: block;
+    border-radius: 8px;
+    image-rendering: auto;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+/* ============================================
+IMAGENS DAS SEÇÕES GAMES
+============================================ */
+
+.vice-game-imagem {
     flex: 1;
     min-width: 0;
 }
 
-.personagem-imagem img {
+.vice-game-imagem img {
     width: 100%;
-    height: 350px;
+    height: 300px;
     object-fit: cover;
     border-radius: 20px;
     background: #0a0a1a;
-}
-
-.personagem-info {
-    flex: 1;
-    padding: 20px;
-}
-
-.personagem-info h2 {
-    font-family: "Anton", sans-serif;
-    font-size: 42px;
-    margin: 10px 0 15px;
-    background: linear-gradient(90deg, var(--pink), var(--orange));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.personagem-descricao {
-    font-size: 16px;
-    line-height: 1.8;
-    opacity: 0.85;
-    margin-bottom: 20px;
-}
-
-/* CARDS PERSONAGENS SECUNDÁRIOS */
-.secundarios-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-}
-
-.character-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 22px;
-    overflow: hidden;
-    backdrop-filter: blur(16px);
-    transition: 0.35s;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    display: flex;
-    flex-direction: column;
-}
-
-.character-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 0 35px rgba(255, 60, 160, 0.35);
-}
-
-.character-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    background: #0a0a1a;
-}
-
-.character-card .character-info {
-    padding: 22px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.character-card h3 {
-    font-family: "Anton", sans-serif;
-    font-size: 24px;
-    margin: 8px 0 12px;
-    background: linear-gradient(90deg, var(--pink), var(--orange));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.character-quote {
-    font-style: italic;
-    color: var(--cyan);
-    font-size: 15px;
-    margin: 8px 0 12px;
-    padding-left: 15px;
-    border-left: 3px solid var(--pink);
-    opacity: 0.9;
-}
-
-.character-bio {
-    font-size: 14px;
-    line-height: 1.7;
-    opacity: 0.85;
-    margin-bottom: 10px;
-    flex: 1;
-}
-
-/* GALERIA */
-.galeria-section {
-    padding: 60px 7%;
-}
-
-.galeria-section h2 {
-    font-size: 42px;
-    margin-bottom: 35px;
-    color: var(--pink);
-    font-family: "Anton", sans-serif;
-    letter-spacing: 1px;
-}
-
-.galeria-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-}
-
-.galeria-grid img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 16px;
-    background: #0a0a1a;
+    border: 2px solid rgba(255, 255, 255, 0.06);
     transition: 0.3s;
 }
 
-.galeria-grid img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 30px rgba(255, 60, 160, 0.3);
+.vice-game-imagem img:hover {
+    transform: scale(1.02);
+    border-color: #ff00ff;
 }
 
 /* ============================================
@@ -655,21 +645,21 @@ RESPONSIVIDADE
 ============================================ */
 
 @media (max-width: 1024px) {
-    .personagem-container {
+    .vice-game-container {
         flex-direction: column !important;
         padding: 25px;
     }
-    
-    .personagem-imagem img {
-        height: 300px;
-    }
-    
-    .galeria-grid {
-        grid-template-columns: repeat(2, 1fr);
+
+    .vice-game-imagem img {
+        height: 250px;
     }
 
-    .secundarios-grid {
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    .vice-texto-destaque {
+        font-size: 18px;
+    }
+
+    .vice-intro-imagem {
+        max-width: 100%;
     }
 }
 
@@ -693,9 +683,6 @@ RESPONSIVIDADE
 
     .hero {
         min-height: 500px;
-        background: 
-            linear-gradient(rgba(5, 5, 16, 0.4), rgba(5, 5, 16, 0.7)),
-            url("assets/bg.jpg") center/cover no-repeat;
     }
 
     .timer span {
@@ -722,24 +709,35 @@ RESPONSIVIDADE
         max-height: 250px;
     }
 
-    .personagem-imagem img {
-        height: 250px;
+    .vice-hero {
+        min-height: 40vh;
+        height: 40vh;
     }
 
-    .personagem-info h2 {
-        font-size: 32px;
+    .vice-game-info h2 {
+        font-size: 28px;
     }
 
-    .character-card img {
-        height: 160px;
+    .vice-game-imagem img {
+        height: 200px;
     }
 
-    .galeria-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .vice-texto-destaque {
+        font-size: 16px;
     }
 
-    .galeria-grid img {
-        height: 150px;
+    .vice-curiosidades span {
+        font-size: 10px;
+        padding: 4px 10px;
+    }
+
+    .vice-intro-imagem {
+        max-width: 100%;
+        padding: 8px;
+    }
+
+    .vice-intro-imagem img {
+        max-height: 350px;
     }
 }
 
@@ -755,9 +753,6 @@ RESPONSIVIDADE
 
     .hero {
         min-height: 450px;
-        background: 
-            linear-gradient(rgba(5, 5, 16, 0.5), rgba(5, 5, 16, 0.8)),
-            url("assets/bg.jpg") center/cover no-repeat;
     }
 
     .timer span {
@@ -784,19 +779,6 @@ RESPONSIVIDADE
         grid-template-columns: 1fr;
     }
 
-    .secundarios-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .galeria-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-    }
-
-    .galeria-grid img {
-        height: 120px;
-    }
-
     .section h2 {
         font-size: 26px;
     }
@@ -805,37 +787,52 @@ RESPONSIVIDADE
         max-height: 200px;
     }
 
-    .character-card img {
-        height: 140px;
+    .vice-hero {
+        min-height: 30vh;
+        height: 30vh;
     }
 
-    .personagem-imagem img {
-        height: 200px;
+    .vice-game {
+        padding: 40px 5%;
     }
 
-    .personagem-info h2 {
-        font-size: 26px;
+    .vice-game-container {
+        padding: 18px;
     }
 
-    .personagem-info {
-        padding: 10px 0;
+    .vice-game-info h2 {
+        font-size: 22px;
     }
 
-    .capa-personagens-link a {
-        font-size: 12px;
+    .vice-game-imagem img {
+        height: 160px;
+    }
+
+    .vice-texto-destaque {
+        font-size: 14px;
+    }
+
+    .vice-texto {
+        font-size: 14px;
+    }
+
+    .vice-intro-imagem {
+        padding: 5px;
+    }
+
+    .vice-intro-imagem img {
+        max-height: 250px;
+    }
+
+    .vice-btn {
+        font-size: 13px;
+        padding: 12px 20px;
     }
 }
-
-/* ============================================
-AJUSTES PARA NOTEBOOK
-============================================ */
 
 @media (max-width: 1366px) and (max-height: 800px) {
     .hero {
         min-height: 500px;
-        background: 
-            linear-gradient(rgba(5, 5, 16, 0.4), rgba(5, 5, 16, 0.7)),
-            url("assets/bg.jpg") center/80% auto no-repeat;
     }
 
     .hero-content {
@@ -879,6 +876,11 @@ AJUSTES PARA NOTEBOOK
     .card img {
         max-height: 220px;
     }
+
+    .vice-btn {
+        font-size: 12px;
+        padding: 10px 18px;
+    }
 }
 
 @media (max-width: 1366px) and (max-height: 768px) {
@@ -917,5 +919,10 @@ AJUSTES PARA NOTEBOOK
 
     .card img {
         max-height: 180px;
+    }
+
+    .vice-btn {
+        font-size: 11px;
+        padding: 8px 16px;
     }
 }

@@ -1,0 +1,921 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pink: #ff3cac;
+    --orange: #ff8a3d;
+    --yellow: #ffd166;
+    --cyan: #35d8ff;
+    --bg: #050510;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background: radial-gradient(ellipse at 20% 20%, #0a0a1a, #050510 70%);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--pink), var(--orange));
+    border-radius: 999px;
+}
+
+/* NAVBAR */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 7%;
+    background: rgba(5, 5, 16, 0.35);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.brand {
+    font-family: "Anton", sans-serif;
+    font-size: 34px;
+    letter-spacing: 2px;
+    color: var(--pink);
+}
+
+.navbar nav {
+    display: flex;
+    gap: 28px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+    position: relative;
+}
+
+.navbar a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--pink);
+    transition: width 0.3s;
+    margin-top: 4px;
+}
+
+.navbar a:hover {
+    color: var(--pink);
+}
+
+.navbar a:hover::after {
+    width: 100%;
+}
+
+.navbar a.active {
+    color: var(--pink);
+}
+
+.navbar a.active::after {
+    width: 100%;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    min-height: 550px;
+    background: 
+        linear-gradient(rgba(5, 5, 16, 0.3), rgba(5, 5, 16, 0.6)),
+        url("assets/bg.jpg") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: background-position 0.1s ease-out;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.65));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 50px;
+    width: min(700px, 92vw);
+    background: rgba(18, 18, 30, 0.5);
+    backdrop-filter: blur(32px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 34px;
+    box-shadow: 0 35px 90px rgba(0, 0, 0, 0.5);
+}
+
+.hero h1 {
+    font-family: "Anton", sans-serif;
+    font-size: clamp(72px, 12vw, 120px);
+    background: linear-gradient(#fff, #ff5ca8);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    margin-top: 8px;
+    letter-spacing: 4px;
+    opacity: 0.8;
+}
+
+.days {
+    font-size: clamp(120px, 20vw, 190px);
+    font-weight: 700;
+    color: var(--yellow);
+    text-shadow: 
+        0 0 35px rgba(255, 180, 70, 0.9),
+        0 0 70px rgba(255, 60, 172, 0.3);
+    margin-top: 12px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        text-shadow: 0 0 35px rgba(255, 180, 70, 0.9); 
+    }
+    50% { 
+        text-shadow: 
+            0 0 60px rgba(255, 180, 70, 1),
+            0 0 100px rgba(255, 60, 172, 0.5); 
+    }
+}
+
+/* TIMER */
+.timer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.timer div {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 12px 8px;
+    transition: 0.3s;
+}
+
+.timer div:hover {
+    transform: translateY(-3px);
+}
+
+.timer span {
+    display: block;
+    font-size: 26px;
+    font-weight: bold;
+    color: var(--cyan);
+    text-shadow: 0 0 30px rgba(53, 216, 255, 0.3);
+}
+
+.timer small {
+    font-size: 10px;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+.progress {
+    margin-top: 28px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+#bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--pink), var(--orange), var(--yellow));
+    box-shadow: 0 0 20px rgba(255, 79, 163, 0.8);
+    transition: width 0.5s ease;
+}
+
+.release {
+    margin-top: 18px;
+    letter-spacing: 2px;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* SEÇÕES */
+.section {
+    padding: 90px 7%;
+}
+
+.section h2 {
+    font-size: 42px;
+    margin-bottom: 35px;
+    color: var(--pink);
+    font-family: "Anton", sans-serif;
+    letter-spacing: 1px;
+}
+
+/* CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.card,
+.video-card,
+.character {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 22px;
+    overflow: hidden;
+    backdrop-filter: blur(16px);
+    transition: 0.35s;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.card:hover,
+.video-card:hover,
+.character:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 35px rgba(255, 60, 160, 0.35);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    background: #0a0a1a;
+}
+
+.tag {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, var(--pink), var(--orange));
+    color: #fff;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.content {
+    padding: 22px;
+}
+
+.content h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.content p {
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+/* ============================================
+LINK PERSONAGENS ABAIXO DA CAPA
+============================================ */
+
+.capa-personagens-link {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.capa-personagens-link a {
+    color: var(--pink);
+    text-decoration: none;
+    font-size: 13px;
+    opacity: 0.4;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.capa-personagens-link a:hover {
+    opacity: 1;
+}
+
+/* VÍDEOS */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.video-card .tag {
+    background: linear-gradient(90deg, #ff3cac, #ff8a3d);
+    font-size: 10px;
+    padding: 3px 12px;
+}
+
+.video-card .content h3 {
+    font-family: "Anton", sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+}
+
+.video-card .content p {
+    font-size: 14px;
+    line-height: 1.6;
+    opacity: 0.8;
+    margin: 8px 0 12px;
+}
+
+.video-thumb .thumb-link {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.video-thumb .thumb-link img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.video-thumb:hover .thumb-link img {
+    transform: scale(1.05);
+}
+
+.play-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.video-thumb:hover .play-overlay {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.play-btn {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 60, 172, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: white;
+    transition: 0.3s;
+    box-shadow: 0 0 30px rgba(255, 60, 172, 0.4);
+    padding-left: 6px;
+}
+
+.video-thumb:hover .play-btn {
+    transform: scale(1.1);
+    box-shadow: 0 0 50px rgba(255, 60, 172, 0.6);
+}
+
+.watch-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 13px;
+    background: linear-gradient(90deg, var(--pink), var(--orange));
+    color: white;
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+}
+
+.watch-btn:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 0 25px rgba(255, 60, 160, 0.45);
+}
+
+.watch-btn::before {
+    content: "▶";
+    font-size: 12px;
+    margin-right: 4px;
+}
+
+/* MAPA */
+.map-card {
+    border-radius: 28px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.map-card img {
+    width: 100%;
+    height: auto;
+}
+
+/* FOOTER */
+footer {
+    padding: 50px;
+    text-align: center;
+    color: #aaa;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ANIMAÇÃO DE ENTRADA */
+.section {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#news { animation-delay: 0.1s; }
+#capa { animation-delay: 0.15s; }
+#trailers { animation-delay: 0.2s; }
+#map { animation-delay: 0.25s; }
+
+/* ============================================
+PÁGINA DE PERSONAGENS
+============================================ */
+
+.personagens-hero {
+    min-height: 50vh;
+    height: 50vh;
+    background: 
+        linear-gradient(rgba(5, 5, 16, 0.5), rgba(5, 5, 16, 0.7)),
+        url("assets/bg.jpg") center/cover no-repeat;
+}
+
+.personagens-hero .hero-content {
+    padding: 30px;
+    width: min(600px, 90vw);
+}
+
+.personagens-hero h1 {
+    font-size: clamp(50px, 8vw, 80px);
+}
+
+.personagem-detalhe {
+    padding: 60px 7%;
+}
+
+.personagem-detalhe.reverse .personagem-container {
+    flex-direction: row-reverse;
+}
+
+.personagem-container {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 28px;
+    padding: 30px;
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: 0.3s;
+}
+
+.personagem-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 40px rgba(255, 60, 160, 0.2);
+}
+
+.personagem-imagem {
+    flex: 1;
+    min-width: 0;
+}
+
+.personagem-imagem img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 20px;
+    background: #0a0a1a;
+}
+
+.personagem-info {
+    flex: 1;
+    padding: 20px;
+}
+
+.personagem-info h2 {
+    font-family: "Anton", sans-serif;
+    font-size: 42px;
+    margin: 10px 0 15px;
+    background: linear-gradient(90deg, var(--pink), var(--orange));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.personagem-descricao {
+    font-size: 16px;
+    line-height: 1.8;
+    opacity: 0.85;
+    margin-bottom: 20px;
+}
+
+/* CARDS PERSONAGENS SECUNDÁRIOS */
+.secundarios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.character-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 22px;
+    overflow: hidden;
+    backdrop-filter: blur(16px);
+    transition: 0.35s;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    flex-direction: column;
+}
+
+.character-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 35px rgba(255, 60, 160, 0.35);
+}
+
+.character-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #0a0a1a;
+}
+
+.character-card .character-info {
+    padding: 22px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.character-card h3 {
+    font-family: "Anton", sans-serif;
+    font-size: 24px;
+    margin: 8px 0 12px;
+    background: linear-gradient(90deg, var(--pink), var(--orange));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.character-quote {
+    font-style: italic;
+    color: var(--cyan);
+    font-size: 15px;
+    margin: 8px 0 12px;
+    padding-left: 15px;
+    border-left: 3px solid var(--pink);
+    opacity: 0.9;
+}
+
+.character-bio {
+    font-size: 14px;
+    line-height: 1.7;
+    opacity: 0.85;
+    margin-bottom: 10px;
+    flex: 1;
+}
+
+/* GALERIA */
+.galeria-section {
+    padding: 60px 7%;
+}
+
+.galeria-section h2 {
+    font-size: 42px;
+    margin-bottom: 35px;
+    color: var(--pink);
+    font-family: "Anton", sans-serif;
+    letter-spacing: 1px;
+}
+
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.galeria-grid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 16px;
+    background: #0a0a1a;
+    transition: 0.3s;
+}
+
+.galeria-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 60, 160, 0.3);
+}
+
+/* ============================================
+RESPONSIVIDADE
+============================================ */
+
+@media (max-width: 1024px) {
+    .personagem-container {
+        flex-direction: column !important;
+        padding: 25px;
+    }
+    
+    .personagem-imagem img {
+        height: 300px;
+    }
+    
+    .galeria-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .secundarios-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 16px 5%;
+    }
+
+    .navbar nav {
+        gap: 14px;
+        font-size: 14px;
+    }
+
+    .brand {
+        font-size: 24px;
+    }
+
+    .hero-content {
+        padding: 30px;
+    }
+
+    .hero {
+        min-height: 500px;
+        background: 
+            linear-gradient(rgba(5, 5, 16, 0.4), rgba(5, 5, 16, 0.7)),
+            url("assets/bg.jpg") center/cover no-repeat;
+    }
+
+    .timer span {
+        font-size: 22px;
+    }
+
+    .timer div {
+        padding: 10px 6px;
+    }
+
+    .days {
+        font-size: clamp(80px, 15vw, 120px);
+    }
+
+    .section {
+        padding: 70px 5%;
+    }
+
+    .section h2 {
+        font-size: 30px;
+    }
+
+    .card img {
+        max-height: 250px;
+    }
+
+    .personagem-imagem img {
+        height: 250px;
+    }
+
+    .personagem-info h2 {
+        font-size: 32px;
+    }
+
+    .character-card img {
+        height: 160px;
+    }
+
+    .galeria-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .galeria-grid img {
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar nav {
+        gap: 10px;
+        font-size: 11px;
+    }
+
+    .brand {
+        font-size: 20px;
+    }
+
+    .hero {
+        min-height: 450px;
+        background: 
+            linear-gradient(rgba(5, 5, 16, 0.5), rgba(5, 5, 16, 0.8)),
+            url("assets/bg.jpg") center/cover no-repeat;
+    }
+
+    .timer span {
+        font-size: 18px;
+    }
+
+    .timer div {
+        padding: 8px 4px;
+    }
+
+    .days {
+        font-size: 60px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .release {
+        font-size: 11px;
+    }
+
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .secundarios-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .galeria-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .galeria-grid img {
+        height: 120px;
+    }
+
+    .section h2 {
+        font-size: 26px;
+    }
+
+    .card img {
+        max-height: 200px;
+    }
+
+    .character-card img {
+        height: 140px;
+    }
+
+    .personagem-imagem img {
+        height: 200px;
+    }
+
+    .personagem-info h2 {
+        font-size: 26px;
+    }
+
+    .personagem-info {
+        padding: 10px 0;
+    }
+
+    .capa-personagens-link a {
+        font-size: 12px;
+    }
+}
+
+/* ============================================
+AJUSTES PARA NOTEBOOK
+============================================ */
+
+@media (max-width: 1366px) and (max-height: 800px) {
+    .hero {
+        min-height: 500px;
+        background: 
+            linear-gradient(rgba(5, 5, 16, 0.4), rgba(5, 5, 16, 0.7)),
+            url("assets/bg.jpg") center/80% auto no-repeat;
+    }
+
+    .hero-content {
+        padding: 28px 32px;
+        width: min(550px, 92vw);
+        border-radius: 24px;
+    }
+
+    .hero h1 {
+        font-size: clamp(48px, 10vw, 72px);
+    }
+
+    .days {
+        font-size: clamp(70px, 15vw, 110px);
+        margin-top: 6px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        letter-spacing: 3px;
+    }
+
+    .timer span {
+        font-size: 22px;
+    }
+
+    .timer div {
+        padding: 10px 6px;
+    }
+
+    .progress {
+        margin-top: 18px;
+        height: 8px;
+    }
+
+    .release {
+        font-size: 12px;
+        margin-top: 12px;
+    }
+
+    .card img {
+        max-height: 220px;
+    }
+}
+
+@media (max-width: 1366px) and (max-height: 768px) {
+    .hero {
+        min-height: 450px;
+    }
+
+    .hero-content {
+        padding: 22px 28px;
+    }
+
+    .days {
+        font-size: clamp(60px, 12vw, 90px);
+    }
+
+    .timer span {
+        font-size: 18px;
+    }
+
+    .timer div {
+        padding: 8px 4px;
+    }
+
+    .hero h1 {
+        font-size: clamp(40px, 8vw, 56px);
+    }
+
+    .subtitle {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+
+    .release {
+        font-size: 10px;
+    }
+
+    .card img {
+        max-height: 180px;
+    }
+}

@@ -96,9 +96,10 @@ body {
 
 .hero {
     height: 100vh;
-    min-height: 550px;
+    min-height: 520px;
+    max-height: 900px;
     background: 
-        linear-gradient(rgba(5, 5, 16, 0.3), rgba(5, 5, 16, 0.6)),
+        linear-gradient(rgba(5, 5, 16, 0.4), rgba(5, 5, 16, 0.7)),
         url("assets/bg.jpg") center/cover no-repeat;
     display: flex;
     justify-content: center;
@@ -117,88 +118,123 @@ body {
     position: relative;
     z-index: 2;
     text-align: center;
-    padding: 50px;
-    width: min(700px, 92vw);
+    padding: 35px 40px;
+    width: min(580px, 92vw);
     background: rgba(18, 18, 30, 0.5);
     backdrop-filter: blur(32px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 34px;
-    box-shadow: 0 35px 90px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 28px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
 }
+
+/* ============================================
+GTA VI - TÍTULO MENOR E NEON ROXO
+============================================ */
 
 .hero h1 {
     font-family: "Anton", sans-serif;
-    font-size: clamp(72px, 12vw, 120px);
-    background: linear-gradient(#fff, #ff5ca8);
+    font-size: clamp(42px, 7vw, 70px);
+    background: linear-gradient(90deg, #ff00ff, #ff0080);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 40px rgba(255, 0, 255, 0.2);
+    letter-spacing: 2px;
 }
 
 .subtitle {
-    margin-top: 8px;
-    letter-spacing: 4px;
-    opacity: 0.8;
+    font-size: clamp(11px, 1.2vw, 14px);
+    margin-top: 4px;
+    letter-spacing: 3px;
+    opacity: 0.6;
+    color: #ff00ff;
+    text-transform: uppercase;
 }
+
+/* ============================================
+DIAS - MENOR E NEON ROXO
+============================================ */
 
 .days {
-    font-size: clamp(120px, 20vw, 190px);
+    font-size: clamp(70px, 11vw, 110px);
     font-weight: 700;
-    color: var(--yellow);
+    color: #ff00ff;
     text-shadow: 
-        0 0 35px rgba(255, 180, 70, 0.9),
-        0 0 70px rgba(255, 60, 172, 0.3);
-    margin-top: 12px;
-    animation: pulse 2s ease-in-out infinite;
+        0 0 30px rgba(255, 0, 255, 0.6),
+        0 0 60px rgba(255, 0, 255, 0.3),
+        0 0 100px rgba(255, 0, 255, 0.15);
+    margin-top: 6px;
+    animation: neonPulse 2s ease-in-out infinite;
+    font-family: "Anton", sans-serif;
+    letter-spacing: 4px;
 }
 
-@keyframes pulse {
-    0%, 100% { 
-        text-shadow: 0 0 35px rgba(255, 180, 70, 0.9); 
-    }
-    50% { 
+@keyframes neonPulse {
+    0%, 100% {
         text-shadow: 
-            0 0 60px rgba(255, 180, 70, 1),
-            0 0 100px rgba(255, 60, 172, 0.5); 
+            0 0 20px rgba(255, 0, 255, 0.5),
+            0 0 40px rgba(255, 0, 255, 0.2);
+    }
+    50% {
+        text-shadow: 
+            0 0 40px rgba(255, 0, 255, 0.8),
+            0 0 80px rgba(255, 0, 255, 0.4),
+            0 0 120px rgba(255, 0, 255, 0.2);
     }
 }
+
+/* ============================================
+TIMER - MENOR E NEON ROXO
+============================================ */
 
 .timer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-top: 20px;
+    gap: 8px;
+    margin-top: 12px;
 }
 
 .timer div {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 12px 8px;
+    background: rgba(255, 0, 255, 0.05);
+    border: 1px solid rgba(255, 0, 255, 0.1);
+    border-radius: 12px;
+    padding: 8px 6px;
     transition: 0.3s;
 }
 
 .timer div:hover {
     transform: translateY(-3px);
+    background: rgba(255, 0, 255, 0.1);
+    border-color: rgba(255, 0, 255, 0.3);
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.1);
 }
 
 .timer span {
     display: block;
-    font-size: 26px;
-    font-weight: bold;
-    color: var(--cyan);
-    text-shadow: 0 0 30px rgba(53, 216, 255, 0.3);
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-weight: 700;
+    color: #ff00ff;
+    text-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+    font-family: "Anton", sans-serif;
+    letter-spacing: 2px;
 }
 
 .timer small {
-    font-size: 10px;
-    letter-spacing: 1px;
-    opacity: 0.7;
+    font-size: clamp(7px, 0.8vw, 9px);
+    letter-spacing: 2px;
+    opacity: 0.5;
+    color: #ff00ff;
+    text-transform: uppercase;
 }
 
+/* ============================================
+BARRA DE PROGRESSO - NEON ROXO
+============================================ */
+
 .progress {
-    margin-top: 28px;
-    height: 10px;
-    background: rgba(255, 255, 255, 0.12);
+    margin-top: 16px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.08);
     border-radius: 999px;
     overflow: hidden;
 }
@@ -206,17 +242,27 @@ body {
 #bar {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, var(--pink), var(--orange), var(--yellow));
-    box-shadow: 0 0 20px rgba(255, 79, 163, 0.8);
+    background: linear-gradient(90deg, #ff00ff, #ff0080);
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
     transition: width 0.5s ease;
 }
 
+/* ============================================
+RELEASE - MENOR
+============================================ */
+
 .release {
-    margin-top: 18px;
+    margin-top: 12px;
     letter-spacing: 2px;
-    font-size: 14px;
-    opacity: 0.7;
+    font-size: clamp(9px, 0.9vw, 12px);
+    opacity: 0.5;
+    text-transform: uppercase;
+    color: #ff00ff;
 }
+
+/* ============================================
+SEÇÕES
+============================================ */
 
 .section {
     padding: 90px 7%;
@@ -229,6 +275,10 @@ body {
     font-family: "Anton", sans-serif;
     letter-spacing: 1px;
 }
+
+/* ============================================
+CARDS
+============================================ */
 
 .cards {
     display: grid;
@@ -887,23 +937,33 @@ RESPONSIVIDADE
     }
 
     .hero-content {
-        padding: 30px;
+        padding: 28px 25px;
+        width: min(480px, 92vw);
+        border-radius: 24px;
     }
 
-    .hero {
-        min-height: 500px;
-    }
-
-    .timer span {
-        font-size: 22px;
-    }
-
-    .timer div {
-        padding: 10px 6px;
+    .hero h1 {
+        font-size: clamp(32px, 6vw, 48px);
     }
 
     .days {
-        font-size: clamp(80px, 15vw, 120px);
+        font-size: clamp(50px, 10vw, 80px);
+    }
+
+    .timer span {
+        font-size: 18px;
+    }
+
+    .timer div {
+        padding: 6px 4px;
+    }
+
+    .timer small {
+        font-size: 8px;
+    }
+
+    .release {
+        font-size: 9px;
     }
 
     .section {
@@ -976,28 +1036,54 @@ RESPONSIVIDADE
         font-size: 20px;
     }
 
-    .hero {
-        min-height: 450px;
-    }
-
-    .timer span {
-        font-size: 18px;
-    }
-
-    .timer div {
-        padding: 8px 4px;
-    }
-
-    .days {
-        font-size: 60px;
+    .hero-content {
+        padding: 20px 16px;
+        width: min(360px, 94vw);
+        border-radius: 20px;
     }
 
     .hero h1 {
-        font-size: 48px;
+        font-size: 28px;
+    }
+
+    .subtitle {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    .days {
+        font-size: 40px;
+        margin-top: 2px;
+    }
+
+    .timer {
+        gap: 5px;
+        margin-top: 10px;
+    }
+
+    .timer span {
+        font-size: 14px;
+    }
+
+    .timer div {
+        padding: 5px 3px;
+        border-radius: 8px;
+    }
+
+    .timer small {
+        font-size: 7px;
+        letter-spacing: 0.5px;
+    }
+
+    .progress {
+        margin-top: 10px;
+        height: 4px;
     }
 
     .release {
-        font-size: 11px;
+        font-size: 8px;
+        margin-top: 8px;
+        letter-spacing: 1px;
     }
 
     .video-grid {
@@ -1076,99 +1162,116 @@ RESPONSIVIDADE
     }
 }
 
+@media (max-width: 380px) {
+    .hero-content {
+        padding: 16px 12px;
+        border-radius: 16px;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+    }
+
+    .days {
+        font-size: 36px;
+    }
+
+    .timer span {
+        font-size: 12px;
+    }
+
+    .timer small {
+        font-size: 6px;
+    }
+
+    .release {
+        font-size: 7px;
+    }
+}
+
 @media (max-width: 1366px) and (max-height: 800px) {
     .hero {
-        min-height: 500px;
+        min-height: 480px;
+        max-height: 750px;
     }
 
     .hero-content {
-        padding: 28px 32px;
-        width: min(550px, 92vw);
+        padding: 28px 30px;
+        width: min(520px, 92vw);
         border-radius: 24px;
     }
 
     .hero h1 {
-        font-size: clamp(48px, 10vw, 72px);
+        font-size: clamp(38px, 6vw, 56px);
     }
 
     .days {
-        font-size: clamp(70px, 15vw, 110px);
-        margin-top: 6px;
-    }
-
-    .subtitle {
-        font-size: 14px;
-        letter-spacing: 3px;
+        font-size: clamp(60px, 10vw, 90px);
     }
 
     .timer span {
-        font-size: 22px;
+        font-size: 20px;
     }
 
     .timer div {
-        padding: 10px 6px;
-    }
-
-    .progress {
-        margin-top: 18px;
-        height: 8px;
-    }
-
-    .release {
-        font-size: 12px;
-        margin-top: 12px;
-    }
-
-    .card img {
-        max-height: 220px;
-    }
-
-    .vice-btn {
-        font-size: 12px;
-        padding: 10px 18px;
-    }
-}
-
-@media (max-width: 1366px) and (max-height: 768px) {
-    .hero {
-        min-height: 450px;
-    }
-
-    .hero-content {
-        padding: 22px 28px;
-    }
-
-    .days {
-        font-size: clamp(60px, 12vw, 90px);
-    }
-
-    .timer span {
-        font-size: 18px;
-    }
-
-    .timer div {
-        padding: 8px 4px;
-    }
-
-    .hero h1 {
-        font-size: clamp(40px, 8vw, 56px);
-    }
-
-    .subtitle {
-        font-size: 12px;
-        letter-spacing: 2px;
+        padding: 8px 5px;
     }
 
     .release {
         font-size: 10px;
     }
+}
 
-    .card img {
-        max-height: 180px;
+@media (max-width: 1366px) and (max-height: 768px) {
+    .hero {
+        min-height: 420px;
+        max-height: 650px;
     }
 
-    .vice-btn {
+    .hero-content {
+        padding: 22px 24px;
+        width: min(460px, 92vw);
+        border-radius: 20px;
+    }
+
+    .hero h1 {
+        font-size: clamp(32px, 5vw, 44px);
+    }
+
+    .days {
+        font-size: clamp(50px, 8vw, 70px);
+        margin-top: 2px;
+    }
+
+    .subtitle {
         font-size: 11px;
-        padding: 8px 16px;
+        letter-spacing: 2px;
+    }
+
+    .timer {
+        gap: 6px;
+        margin-top: 10px;
+    }
+
+    .timer span {
+        font-size: 16px;
+    }
+
+    .timer div {
+        padding: 5px 3px;
+    }
+
+    .timer small {
+        font-size: 7px;
+    }
+
+    .progress {
+        margin-top: 12px;
+        height: 5px;
+    }
+
+    .release {
+        font-size: 9px;
+        margin-top: 8px;
     }
 }

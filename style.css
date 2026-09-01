@@ -495,7 +495,6 @@ PÁGINA VICE CITY - RETRÔ ANOS 80
     box-shadow: 0 0 60px rgba(255, 0, 255, 0.2);
 }
 
-/* INTRODUÇÃO */
 .vice-intro {
     background: linear-gradient(180deg, #0a0a1a, #050510);
     border-top: 1px solid rgba(255, 0, 255, 0.1);
@@ -591,10 +590,6 @@ PÁGINA VICE CITY - RETRÔ ANOS 80
     border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* ============================================
-IMAGEM DA MULHER NA INTRODUÇÃO - NÍTIDA
-============================================ */
-
 .vice-intro-imagem {
     margin: 25px auto;
     max-width: 550px;
@@ -612,13 +607,7 @@ IMAGEM DA MULHER NA INTRODUÇÃO - NÍTIDA
     object-fit: contain;
     display: block;
     border-radius: 8px;
-    image-rendering: auto;
-    image-rendering: -webkit-optimize-contrast;
 }
-
-/* ============================================
-IMAGENS DAS SEÇÕES GAMES
-============================================ */
 
 .vice-game-imagem {
     flex: 1;
@@ -641,10 +630,222 @@ IMAGENS DAS SEÇÕES GAMES
 }
 
 /* ============================================
+PÁGINA DE PERSONAGENS - ESTILO VICE CITY
+============================================ */
+
+.personagens-hero {
+    min-height: 50vh;
+    height: 50vh;
+    background: 
+        linear-gradient(rgba(5, 5, 16, 0.4), rgba(5, 5, 16, 0.7)),
+        url("assets/bg.jpg") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.personagens-hero .hero-content {
+    padding: 30px 40px;
+    width: min(600px, 90vw);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 0, 255, 0.3);
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 0 60px rgba(255, 0, 255, 0.1);
+}
+
+.personagens-hero h1 {
+    font-size: clamp(40px, 6vw, 60px);
+    font-family: "Anton", sans-serif;
+    background: linear-gradient(90deg, #ff00ff, #ff0080);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+}
+
+.personagens-hero .subtitle {
+    font-size: 14px;
+    letter-spacing: 4px;
+    opacity: 0.7;
+    margin-top: 6px;
+    color: #ff00ff;
+    text-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
+}
+
+/* PERSONAGENS - IMAGENS MENORES */
+.personagem-detalhe {
+    padding: 60px 7%;
+}
+
+.personagem-detalhe.reverse .personagem-container {
+    flex-direction: row-reverse;
+}
+
+.personagem-container {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 28px;
+    padding: 30px;
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: 0.3s;
+}
+
+.personagem-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 40px rgba(255, 60, 160, 0.2);
+}
+
+.personagem-imagem {
+    flex: 1;
+    min-width: 0;
+}
+
+.personagem-imagem img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 20px;
+    background: #0a0a1a;
+}
+
+.personagem-info {
+    flex: 1;
+    padding: 20px;
+}
+
+.personagem-info h2 {
+    font-family: "Anton", sans-serif;
+    font-size: 42px;
+    margin: 10px 0 15px;
+    background: linear-gradient(90deg, var(--pink), var(--orange));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.personagem-descricao {
+    font-size: 16px;
+    line-height: 1.8;
+    opacity: 0.85;
+    margin-bottom: 20px;
+}
+
+.secundarios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.character-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 22px;
+    overflow: hidden;
+    backdrop-filter: blur(16px);
+    transition: 0.35s;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    flex-direction: column;
+}
+
+.character-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 35px rgba(255, 60, 160, 0.35);
+}
+
+.character-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #0a0a1a;
+}
+
+.character-card .character-info {
+    padding: 22px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.character-card h3 {
+    font-family: "Anton", sans-serif;
+    font-size: 24px;
+    margin: 8px 0 12px;
+    background: linear-gradient(90deg, var(--pink), var(--orange));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.character-quote {
+    font-style: italic;
+    color: var(--cyan);
+    font-size: 15px;
+    margin: 8px 0 12px;
+    padding-left: 15px;
+    border-left: 3px solid var(--pink);
+    opacity: 0.9;
+}
+
+.character-bio {
+    font-size: 14px;
+    line-height: 1.7;
+    opacity: 0.85;
+    margin-bottom: 10px;
+    flex: 1;
+}
+
+.galeria-section {
+    padding: 60px 7%;
+}
+
+.galeria-section h2 {
+    font-size: 42px;
+    margin-bottom: 35px;
+    color: var(--pink);
+    font-family: "Anton", sans-serif;
+    letter-spacing: 1px;
+}
+
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.galeria-grid img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 16px;
+    background: #0a0a1a;
+    transition: 0.3s;
+}
+
+.galeria-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 60, 160, 0.3);
+}
+
+/* ============================================
 RESPONSIVIDADE
 ============================================ */
 
 @media (max-width: 1024px) {
+    .personagem-container {
+        flex-direction: column !important;
+        padding: 25px;
+    }
+
+    .personagem-imagem img {
+        height: 220px;
+    }
+
     .vice-game-container {
         flex-direction: column !important;
         padding: 25px;
@@ -660,6 +861,14 @@ RESPONSIVIDADE
 
     .vice-intro-imagem {
         max-width: 100%;
+    }
+
+    .galeria-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .secundarios-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     }
 }
 
@@ -738,6 +947,22 @@ RESPONSIVIDADE
 
     .vice-intro-imagem img {
         max-height: 350px;
+    }
+
+    .personagem-imagem img {
+        height: 180px;
+    }
+
+    .character-card img {
+        height: 160px;
+    }
+
+    .galeria-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .galeria-grid img {
+        height: 130px;
     }
 }
 
@@ -827,6 +1052,27 @@ RESPONSIVIDADE
     .vice-btn {
         font-size: 13px;
         padding: 12px 20px;
+    }
+
+    .secundarios-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .personagem-imagem img {
+        height: 160px;
+    }
+
+    .character-card img {
+        height: 140px;
+    }
+
+    .galeria-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .galeria-grid img {
+        height: 100px;
     }
 }
 

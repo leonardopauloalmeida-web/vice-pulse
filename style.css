@@ -1704,6 +1704,25 @@ PÁGINA DE NOTÍCIAS
     }
 }
 
+/* ============================================
+CRÉDITO DAS IMAGENS - ROCKSTAR GAMES
+============================================ */
+
+.credito-imagem {
+    font-size: 10px;
+    opacity: 0.3;
+    text-align: center;
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+    color: #aaa;
+    transition: 0.3s;
+}
+
+.credito-imagem:hover {
+    opacity: 0.7;
+}
+
+
 
     }
 }

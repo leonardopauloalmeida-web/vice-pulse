@@ -2088,6 +2088,65 @@ PÁGINA DE NOTÍCIAS - DESIGN MELHORADO
     }
 }
 
+/* ============================================
+LINHA DO TEMPO COM CAPAS DOS JOGOS
+============================================ */
+
+/* CAPAS PEQUENAS NA LINHA DO TEMPO */
+.timeline-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.timeline-texto {
+    flex: 1;
+}
+
+.timeline-capa {
+    flex: 0 0 60px;      /* LARGURA */
+    height: 45px;        /* ALTURA */
+    border-radius: 6px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+}
+
+.timeline-capa img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.timeline-capa:hover {
+    transform: scale(1.1);
+    border-color: var(--pink);
+    box-shadow: 0 0 20px rgba(255, 60, 160, 0.3);
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .timeline-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .timeline-capa {
+        flex: 0 0 auto;
+        width: 100%;
+        height: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline-capa {
+        height: 60px;
+    }
+}
+
+
 
 
     }

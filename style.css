@@ -1705,21 +1705,387 @@ PÁGINA DE NOTÍCIAS
 }
 
 /* ============================================
-CRÉDITO DAS IMAGENS - ROCKSTAR GAMES
+PÁGINA DE NOTÍCIAS - DESIGN MELHORADO
 ============================================ */
 
-.credito-imagem {
-    font-size: 10px;
-    opacity: 0.3;
-    text-align: center;
-    margin-top: 6px;
-    letter-spacing: 0.5px;
-    color: #aaa;
-    transition: 0.3s;
+.noticias-hero {
+    min-height: 50vh;
+    height: 50vh;
+    background: 
+        linear-gradient(rgba(5, 5, 16, 0.4), rgba(5, 5, 16, 0.7)),
+        url("assets/bg.jpg") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
-.credito-imagem:hover {
-    opacity: 0.7;
+.noticias-hero .hero-content {
+    padding: 30px 40px;
+    width: min(600px, 90vw);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 0, 255, 0.3);
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 0 60px rgba(255, 0, 255, 0.1);
+}
+
+.noticias-hero h1 {
+    font-size: clamp(40px, 6vw, 60px);
+    font-family: "Anton", sans-serif;
+    background: linear-gradient(90deg, #ff00ff, #ff0080);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+}
+
+.noticias-hero .subtitle {
+    font-size: 14px;
+    letter-spacing: 4px;
+    opacity: 0.6;
+    margin-top: 6px;
+    color: #ff00ff;
+}
+
+/* GRID DE NOTÍCIAS */
+.noticias-section {
+    padding: 60px 7%;
+}
+
+.noticias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 30px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.noticia-card {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 24px;
+    padding: 28px 30px;
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.noticia-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--pink), var(--orange), var(--yellow));
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.noticia-card:hover::before {
+    opacity: 1;
+}
+
+.noticia-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 50px rgba(255, 60, 160, 0.15);
+    border-color: rgba(255, 60, 160, 0.15);
+}
+
+/* TAG DA CATEGORIA */
+.noticia-card .tag {
+    display: inline-block;
+    padding: 4px 16px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    background: linear-gradient(90deg, var(--pink), var(--orange));
+    color: #fff;
+    margin-bottom: 14px;
+    align-self: flex-start;
+    text-transform: uppercase;
+    box-shadow: 0 0 20px rgba(255, 60, 160, 0.2);
+}
+
+/* CORES DAS CATEGORIAS */
+.noticia-card .tag[data-categoria="MECÂNICAS"] {
+    background: linear-gradient(90deg, #ff00ff, #ff0080);
+}
+
+.noticia-card .tag[data-categoria="RELACIONAMENTO"] {
+    background: linear-gradient(90deg, #ff6b6b, #ee5a24);
+}
+
+.noticia-card .tag[data-categoria="CONTROLES"] {
+    background: linear-gradient(90deg, #35d8ff, #0984e3);
+}
+
+.noticia-card .tag[data-categoria="ANIMAIS"] {
+    background: linear-gradient(90deg, #6bff6b, #00b894);
+}
+
+.noticia-card .tag[data-categoria="JOGABILIDADE"] {
+    background: linear-gradient(90deg, #ffd166, #f0932b);
+}
+
+.noticia-card .tag[data-categoria="DETALHES"] {
+    background: linear-gradient(90deg, #a29bfe, #6c5ce7);
+}
+
+.noticia-card .tag[data-categoria="COMBATE"] {
+    background: linear-gradient(90deg, #ff6b6b, #d63031);
+}
+
+.noticia-card .tag[data-categoria="VEÍCULOS"] {
+    background: linear-gradient(90deg, #00cec9, #0984e3);
+}
+
+.noticia-card .tag[data-categoria="COMBUSTÍVEL"] {
+    background: linear-gradient(90deg, #fd79a8, #e84393);
+}
+
+.noticia-card .tag[data-categoria="POLÍCIA"] {
+    background: linear-gradient(90deg, #2d3436, #636e72);
+}
+
+.noticia-card .tag[data-categoria="ECONOMIA"] {
+    background: linear-gradient(90deg, #fdcb6e, #e17055);
+}
+
+.noticia-card .tag[data-categoria="ATIVIDADES"] {
+    background: linear-gradient(90deg, #00b894, #00cec9);
+}
+
+/* TÍTULO */
+.noticia-card h3 {
+    font-family: "Anton", sans-serif;
+    font-size: 24px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+}
+
+/* METADADOS */
+.noticia-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    opacity: 0.5;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding-bottom: 12px;
+}
+
+.noticia-fonte {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.noticia-fonte::before {
+    content: '📰';
+    font-size: 14px;
+}
+
+.noticia-data {
+    background: rgba(255, 255, 255, 0.06);
+    padding: 2px 12px;
+    border-radius: 999px;
+    font-size: 10px;
+}
+
+/* TEXTO E LISTAS */
+.noticia-texto {
+    font-size: 15px;
+    line-height: 1.8;
+    opacity: 0.85;
+    margin-bottom: 8px;
+}
+
+.noticia-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.noticia-lista li {
+    font-size: 14px;
+    line-height: 1.7;
+    opacity: 0.85;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    padding-left: 22px;
+    position: relative;
+}
+
+.noticia-lista li::before {
+    content: "◆";
+    position: absolute;
+    left: 0;
+    color: var(--pink);
+    font-size: 10px;
+    top: 10px;
+}
+
+.noticia-lista li:last-child {
+    border-bottom: none;
+}
+
+.noticia-lista li strong {
+    color: var(--cyan);
+}
+
+/* CITAÇÕES */
+.noticia-quote {
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 3px solid var(--pink);
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: var(--cyan);
+    font-size: 14px;
+}
+
+/* BLOCO DE TÓPICOS (ATIVIDADES) */
+.noticia-topico {
+    margin-bottom: 14px;
+}
+
+.noticia-topico-titulo {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    color: var(--pink);
+}
+
+.noticia-topico-titulo.azul {
+    color: var(--cyan);
+}
+
+.noticia-topico-titulo.amarelo {
+    color: var(--yellow);
+}
+
+.noticia-topico-titulo.laranja {
+    color: var(--orange);
+}
+
+/* FONTE FINAL */
+.noticia-fonte-final {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--pink);
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.noticia-fonte-final::before {
+    content: '📰';
+    font-size: 14px;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 1024px) {
+    .noticias-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .noticias-hero {
+        min-height: 40vh;
+        height: 40vh;
+    }
+
+    .noticias-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .noticia-card {
+        padding: 22px 24px;
+        border-radius: 20px;
+    }
+
+    .noticia-card h3 {
+        font-size: 20px;
+    }
+
+    .noticia-texto {
+        font-size: 14px;
+    }
+
+    .noticia-lista li {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .noticias-hero {
+        min-height: 30vh;
+        height: 30vh;
+    }
+
+    .noticias-hero h1 {
+        font-size: 32px;
+    }
+
+    .noticias-hero .subtitle {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+
+    .noticia-card {
+        padding: 18px 16px;
+        border-radius: 16px;
+    }
+
+    .noticia-card h3 {
+        font-size: 17px;
+    }
+
+    .noticia-meta {
+        font-size: 10px;
+        flex-direction: column;
+        gap: 6px;
+        align-items: flex-start;
+    }
+
+    .noticia-lista li {
+        font-size: 12px;
+        padding: 6px 0 6px 20px;
+    }
+
+    .noticia-fonte-final {
+        font-size: 11px;
+    }
+
+    .noticia-quote {
+        font-size: 13px;
+        padding: 10px 14px;
+    }
+
+    .noticia-topico-titulo {
+        font-size: 12px;
+    }
 }
 
 

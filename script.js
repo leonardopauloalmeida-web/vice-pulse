@@ -66,18 +66,18 @@ if (days && hours && minutes && seconds && bar) {
     }
 
     // VERIFICA MARCOS IMPORTANTES
+    // Corrigido: marcos em ordem crescente, para achar o MENOR marco
+    // que ainda cobre os dias restantes (ex.: 16 dias -> "menos de 30 dias").
     let lastMilestone = parseInt(localStorage.getItem("lastMilestone") || "9999");
 
     function checkMilestones(daysLeft) {
-        const milestones = [365, 180, 90, 30, 7, 1];
-        
-        for (const m of milestones) {
-            if (daysLeft <= m && m < lastMilestone) {
-                lastMilestone = m;
-                localStorage.setItem("lastMilestone", String(m));
-                showNotification(`🚨 Faltam apenas ${m} dia${m > 1 ? 's' : ''} para GTA VI!`);
-                break;
-            }
+        const milestones = [1, 7, 30, 90, 180, 365];
+        const m = milestones.find(x => daysLeft <= x);
+
+        if (m && m < lastMilestone) {
+            lastMilestone = m;
+            localStorage.setItem("lastMilestone", String(m));
+            showNotification(`🚨 Faltam menos de ${m} dia${m > 1 ? 's' : ''} para GTA VI!`);
         }
     }
 
@@ -102,7 +102,7 @@ if (days && hours && minutes && seconds && bar) {
             max-width: 90%;
             text-align: center;
         `;
-        
+
         const style = document.createElement('style');
         style.textContent = `
             @keyframes slideUp {
@@ -119,7 +119,7 @@ if (days && hours && minutes && seconds && bar) {
         }, 5000);
     }
 
-    // EFFECT PARALLAX (só se existir hero)
+    // EFEITO PARALLAX (só se existir hero)
     if (hero) {
         let isMoving = false;
         document.addEventListener("mousemove", (e) => {

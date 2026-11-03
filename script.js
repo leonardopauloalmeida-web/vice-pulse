@@ -266,3 +266,22 @@ if (days && hours && minutes && seconds && bar) {
         if (e.key === "Escape") fechar();
     });
 })();
+
+// ============================================
+// ABERTURA DO SITE: botão ENTRAR
+// (a tela em si está no index.html; a classe "com-abertura"
+// é ligada no <head> só na primeira visita de cada sessão)
+// Para rever a abertura: index.html?abertura
+// ============================================
+(function () {
+    const abertura = document.getElementById("abertura");
+    const entrar = document.getElementById("ab-entrar");
+    if (!abertura || !entrar) return;
+
+    entrar.addEventListener("click", () => {
+        abertura.classList.add("saindo");
+        try { sessionStorage.setItem("viceAbertura", "1"); } catch (e) {}
+        // espera a animação de saída terminar e libera a página
+        setTimeout(() => document.documentElement.classList.remove("com-abertura"), 800);
+    });
+})();

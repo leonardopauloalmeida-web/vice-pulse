@@ -12,6 +12,15 @@
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#ff3cac">
 
+    <!-- ABERTURA: decide ANTES de a página aparecer, para não piscar -->
+    <script>
+        try {
+            if (!sessionStorage.getItem("viceAbertura") || location.search.includes("abertura")) {
+                document.documentElement.classList.add("com-abertura");
+            }
+        } catch (e) {}
+    </script>
+
     <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,6 +34,19 @@
 </head>
 
 <body>
+
+    <!-- ============================================
+    ABERTURA DO SITE (pôr do sol + letreiro neon)
+    ============================================ -->
+    <div id="abertura" class="abertura">
+        <div class="ab-ceu"></div>
+        <div class="ab-sol"></div>
+        <div class="ab-chao"><div class="ab-grade"></div></div>
+        <div class="ab-titulo" role="img" aria-label="Vice Pulse">
+            <span class="ab-letra" style="--i:0" aria-hidden="true">V</span><span class="ab-letra" style="--i:1" aria-hidden="true">I</span><span class="ab-letra" style="--i:2" aria-hidden="true">C</span><span class="ab-letra" style="--i:3" aria-hidden="true">E</span><span class="ab-letra" style="--i:4" aria-hidden="true">&nbsp;</span><span class="ab-letra" style="--i:5" aria-hidden="true">P</span><span class="ab-letra" style="--i:6" aria-hidden="true">U</span><span class="ab-letra" style="--i:7" aria-hidden="true">L</span><span class="ab-letra" style="--i:8" aria-hidden="true">S</span><span class="ab-letra" style="--i:9" aria-hidden="true">E</span>
+        </div>
+        <button id="ab-entrar" class="ab-entrar">ENTRAR</button>
+    </div>
 
     <!-- NAVBAR -->
     <header class="navbar">

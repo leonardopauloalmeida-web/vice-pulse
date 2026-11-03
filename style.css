@@ -1048,18 +1048,63 @@ PÁGINA DO DIRETOR (ROB NELSON)
 }
 
 .timeline-capa {
-    flex: 0 0 60px;
-    height: 45px;
-    border-radius: 6px;
+    flex: 0 0 96px;
+    height: 128px;
+    border-radius: 8px;
     overflow: hidden;
+    background: #0a0a1a;
     border: 2px solid rgba(255, 255, 255, 0.1);
     transition: 0.3s;
 }
 
+/* contain = a capa aparece INTEIRA, sem cortar */
 .timeline-capa img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    display: block;
+    cursor: zoom-in;
+}
+
+/* LIGHTBOX (capa em tela cheia ao clicar) */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 5, 16, 0.92);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+}
+
+.lightbox.aberto {
+    display: flex;
+}
+
+.lightbox-img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 0 60px rgba(255, 60, 172, 0.4);
+}
+
+.lightbox-fechar {
+    position: absolute;
+    top: 16px;
+    right: 28px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 44px;
+    line-height: 1;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.lightbox-fechar:hover {
+    color: var(--pink);
 }
 
 .timeline-capa:hover {
@@ -1510,8 +1555,8 @@ RESPONSIVIDADE
 
     .timeline-capa {
         flex: 0 0 auto;
-        width: 100%;
-        height: 80px;
+        width: 110px;
+        height: 147px;
     }
 
     .noticias-hero {
@@ -1707,7 +1752,8 @@ RESPONSIVIDADE
     }
 
     .timeline-capa {
-        height: 60px;
+        width: 90px;
+        height: 120px;
     }
 
     .noticias-hero {

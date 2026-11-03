@@ -164,3 +164,60 @@ if (days && hours && minutes && seconds && bar) {
 } else {
     console.log("📄 Página sem cronômetro (personagens, vice-city, etc.)");
 }
+
+
+// ============================================
+// LIGHTBOX: clicar na capa para ver ela grande
+// (funciona em qualquer página que tenha capas na linha do tempo)
+// ============================================
+(function () {
+    const capas = document.querySelectorAll(".timeline-capa img");
+    if (capas.length === 0) return;
+
+    // Cria a tela escura com a imagem grande (fica escondida até clicar)
+    const overlay = document.createElement("div");
+    overlay.className = "lightbox";
+    overlay.innerHTML = `
+        <button class="lightbox-fechar" aria-label="Fechar">&times;</button>
+        <img class="lightbox-img" alt="">
+    `;
+    document.body.appendChild(overlay);
+
+    const imgGrande = overlay.querySelector(".lightbox-img");
+    const btnFechar = overlay.querySelector(".lightbox-fechar");
+
+    function abrir(img) {
+        imgGrande.src = img.src;
+        imgGrande.alt = img.alt;
+        overlay.classList.add("aberto");
+        document.body.style.overflow = "hidden"; // trava a rolagem da página
+        btnFechar.focus();
+    }
+
+    function fechar() {
+        overlay.classList.remove("aberto");
+        document.body.style.overflow = "";
+    }
+
+    capas.forEach((img) => {
+        img.tabIndex = 0;
+        img.setAttribute("role", "button");
+        img.addEventListener("click", () => abrir(img));
+        img.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                abrir(img);
+            }
+        });
+    });
+
+    // Fecha clicando fora da imagem ou no X
+    overlay.addEventListener("click", (e) => {
+        if (e.target !== imgGrande) fechar();
+    });
+
+    // Fecha com a tecla Esc
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") fechar();
+    });
+})();

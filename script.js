@@ -26,7 +26,8 @@ if (days && hours && minutes && seconds && bar) {
             minutes.textContent = "00";
             seconds.textContent = "00";
             bar.style.width = "100%";
-            if (subtitle) subtitle.textContent = "🎮 JÁ DISPONÍVEL!";
+            clearInterval(interval); // para de atualizar, a contagem acabou
+            celebrar();              // dispara a animação de lançamento
             return;
         }
 
@@ -63,6 +64,44 @@ if (days && hours && minutes && seconds && bar) {
                 element.style.opacity = "1";
             }, 100);
         }
+    }
+
+    // ============================================
+    // ANIMAÇÃO DE LANÇAMENTO: ondas neon nas cores do GTA VI
+    // Toca uma vez, quando a contagem chega a zero.
+    // ============================================
+    let celebrou = false;
+    const CORES_GTA = ["#ff2e93", "#ff7a2f", "#ffc247", "#8a3ffc", "#00d1c1"];
+
+    function celebrar() {
+        if (celebrou) return;
+        celebrou = true;
+
+        // Mensagem "JÁ DISPONÍVEL!" com destaque
+        if (subtitle) {
+            subtitle.textContent = "🎮 JÁ DISPONÍVEL!";
+            subtitle.classList.add("disponivel");
+        }
+
+        // Quem prefere menos movimento no sistema vê só a mensagem, sem os anéis
+        if (!hero || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+        hero.classList.add("celebrando");
+        let total = 0;
+
+        const criarAnel = () => {
+            const cor = CORES_GTA[Math.floor(Math.random() * CORES_GTA.length)];
+            const anel = document.createElement("div");
+            anel.className = "anel-neon";
+            anel.style.borderColor = cor;
+            anel.style.boxShadow = `0 0 22px ${cor}, inset 0 0 22px ${cor}`;
+            hero.appendChild(anel);
+            setTimeout(() => anel.remove(), 3000);
+            if (++total >= 10) clearInterval(timer);
+        };
+
+        const timer = setInterval(criarAnel, 420);
+        criarAnel();
     }
 
     // VERIFICA MARCOS IMPORTANTES
@@ -152,6 +191,12 @@ if (days && hours && minutes && seconds && bar) {
 
     // INICIA A CONTAGEM
     startCountdown();
+
+    // TESTE: abra o site com ?celebrar no final do endereço (index.html?celebrar)
+    // para ver a animação sem esperar o dia 19. Pode apagar essas 3 linhas depois.
+    if (new URLSearchParams(location.search).has("celebrar")) {
+        celebrar();
+    }
 
     // SALVA A DATA NO LOCALSTORAGE
     localStorage.setItem("launchDate", launch.toISOString());

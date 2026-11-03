@@ -285,3 +285,23 @@ if (days && hours && minutes && seconds && bar) {
         setTimeout(() => document.documentElement.classList.remove("com-abertura"), 800);
     });
 })();
+
+// ============================================
+// MENU: adiciona a aba "Revistas" em TODAS as páginas
+// (assim não precisa editar o menu de cada .html)
+// ============================================
+(function () {
+    const nav = document.querySelector(".navbar nav");
+    if (!nav || nav.querySelector('a[href="revistas.html"]')) return;
+
+    const link = document.createElement("a");
+    link.href = "revistas.html";
+    link.textContent = "Revistas";
+
+    const diretor = nav.querySelector('a[href="diretor.html"]');
+    if (diretor) {
+        diretor.after(link);
+    } else {
+        nav.appendChild(link);
+    }
+})();

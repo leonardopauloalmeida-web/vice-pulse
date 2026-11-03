@@ -2158,3 +2158,161 @@ html.com-abertura body {
         opacity: 1;
     }
 }
+
+/* ============================================
+PÁGINA DE REVISTAS
+============================================ */
+
+.revistas-hero {
+    min-height: 50vh;
+    height: 50vh;
+    background:
+        linear-gradient(rgba(5, 5, 16, 0.4), rgba(5, 5, 16, 0.7)),
+        url("assets/bg.jpg") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.revistas-hero .hero-content {
+    padding: 30px 40px;
+    width: min(600px, 90vw);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 0, 255, 0.3);
+    border-radius: 24px;
+    text-align: center;
+}
+
+.revistas-hero h1 {
+    font-size: clamp(40px, 6vw, 60px);
+    font-family: "Anton", sans-serif;
+    background: linear-gradient(90deg, #ff00ff, #ff0080);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+}
+
+.revistas-hero .subtitle {
+    font-size: 14px;
+    letter-spacing: 4px;
+    opacity: 0.6;
+    margin-top: 6px;
+    color: #ff00ff;
+}
+
+.revistas-section {
+    padding: 60px 7%;
+}
+
+.revistas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.revista-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    transition: 0.35s;
+    display: flex;
+    flex-direction: column;
+}
+
+.revista-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 35px rgba(255, 60, 160, 0.35);
+}
+
+.revista-capa {
+    height: 380px;
+    background: #0a0a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.revista-capa img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.revista-info {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.revista-info h3 {
+    font-family: "Anton", sans-serif;
+    font-size: 26px;
+    margin: 6px 0 10px;
+    color: #fff;
+}
+
+.revista-resumo {
+    font-size: 14px;
+    line-height: 1.7;
+    opacity: 0.85;
+    margin-bottom: 12px;
+}
+
+.revista-info .noticia-lista {
+    margin-bottom: 18px;
+    flex: 1;
+}
+
+.revista-link {
+    align-self: flex-start;
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--pink), var(--orange));
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: 0.3s;
+}
+
+.revista-link:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 0 25px rgba(255, 60, 160, 0.45);
+}
+
+@media (max-width: 768px) {
+    .revistas-hero {
+        min-height: 40vh;
+        height: 40vh;
+    }
+
+    .revista-capa {
+        height: 320px;
+    }
+}
+
+@media (max-width: 480px) {
+    .revistas-hero {
+        min-height: 30vh;
+        height: 30vh;
+    }
+
+    .revistas-hero h1 {
+        font-size: 32px;
+    }
+
+    .revista-capa {
+        height: 280px;
+    }
+}

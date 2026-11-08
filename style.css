@@ -289,11 +289,7 @@ SEÇÕES E CARDS
 .card img {
     width: 100%;
     height: auto;
-    max-height: 350px;
-    object-fit: contain;
-    object-position: center;
     display: block;
-    background: #0a0a1a;
 }
 
 .tag {
@@ -637,18 +633,13 @@ PÁGINA VICE CITY - RETRÔ ANOS 80
     max-width: 550px;
     border-radius: 16px;
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    border: 2px solid rgba(255, 0, 255, 0.1);
+    line-height: 0;
 }
 
 .vice-intro-imagem img {
     width: 100%;
     height: auto;
-    max-height: 450px;
-    object-fit: contain;
     display: block;
-    border-radius: 8px;
 }
 
 .vice-game-imagem {
@@ -948,7 +939,6 @@ PÁGINA DO DIRETOR (ROB NELSON)
     object-fit: cover;
     border-radius: 20px;
     background: #0a0a1a;
-    border: 2px solid rgba(255, 0, 255, 0.2);
 }
 
 .diretor-info {
@@ -1471,10 +1461,6 @@ RESPONSIVIDADE
         font-size: 30px;
     }
 
-    .card img {
-        max-height: 250px;
-    }
-
     .vice-hero {
         min-height: 40vh;
         height: 40vh;
@@ -1499,11 +1485,6 @@ RESPONSIVIDADE
 
     .vice-intro-imagem {
         max-width: 100%;
-        padding: 8px;
-    }
-
-    .vice-intro-imagem img {
-        max-height: 350px;
     }
 
     .personagem-imagem img {
@@ -1655,10 +1636,6 @@ RESPONSIVIDADE
         font-size: 26px;
     }
 
-    .card img {
-        max-height: 200px;
-    }
-
     .vice-hero {
         min-height: 30vh;
         height: 30vh;
@@ -1686,14 +1663,6 @@ RESPONSIVIDADE
 
     .vice-texto {
         font-size: 14px;
-    }
-
-    .vice-intro-imagem {
-        padding: 5px;
-    }
-
-    .vice-intro-imagem img {
-        max-height: 250px;
     }
 
     .vice-btn {
@@ -2308,4 +2277,18 @@ PÁGINA DE REVISTAS
         font-size: 32px;
     }
 
+}
+
+/* Todas as fotos do site que abrem grandes ao clicar */
+.card img,
+.personagem-imagem img,
+.character-card img,
+.galeria-grid img,
+.vice-intro-imagem img,
+.vice-game-imagem img,
+.map-card img,
+.diretor-imagem img,
+.timeline-capa img,
+.revista-capa img {
+    cursor: zoom-in;
 }

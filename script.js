@@ -216,7 +216,11 @@ if (days && hours && minutes && seconds && bar) {
 // (funciona em qualquer página que tenha capas na linha do tempo)
 // ============================================
 (function () {
-    const capas = document.querySelectorAll(".timeline-capa img, .revista-capa img");
+    const capas = document.querySelectorAll([
+        ".card img", ".personagem-imagem img", ".character-card img", ".galeria-grid img",
+        ".vice-intro-imagem img", ".vice-game-imagem img", ".map-card img",
+        ".diretor-imagem img", ".timeline-capa img", ".revista-capa img"
+    ].join(", "));
     if (capas.length === 0) return;
 
     // Cria a tela escura com a imagem grande (fica escondida até clicar)
@@ -354,6 +358,9 @@ if (days && hours && minutes && seconds && bar) {
         'html.vp-rec #vpMenu{overflow:visible}',
         'html.vp-rec #vpMenu .vp-a:hover::after{content:attr(data-tip);position:absolute;left:calc(100% + 14px);top:50%;transform:translateY(-50%);background:#000;color:#fff;border:1px solid #333;padding:6px 10px;border-radius:8px;font-size:12px;pointer-events:none}',
         /* celular: gaveta */
+        /* marca fixa: aparece quando o menu está recolhido (e no celular) */
+        '.vp-brand{position:fixed;top:14px;left:calc(var(--mw) + 18px);z-index:900;font-family:"Anton",sans-serif;font-size:22px;letter-spacing:1px;color:#ff3cac;text-decoration:none;padding:6px 16px;border-radius:999px;background:rgba(12,6,26,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.14);text-shadow:0 0 14px rgba(255,60,172,.6);transition:left .28s,opacity .25s}',
+        'html:not(.vp-rec) .vp-brand{opacity:0;pointer-events:none}',
         '.vp-mob,#vpScrim{display:none}',
         '@media(max-width:900px){',
         'body{padding-left:0!important;padding-top:64px!important}',
@@ -363,6 +370,7 @@ if (days && hours && minutes && seconds && bar) {
         'html.vp-rec #vpMenu .vp-a{justify-content:flex-start;padding:0 12px}html.vp-rec #vpMenu .vp-a:hover::after{display:none}',
         'html.vp-rec #vpMenu .vp-hd{justify-content:space-between}html.vp-rec #vpMenu .vp-sec{font-size:10px;padding:14px 12px 4px}html.vp-rec #vpMenu .vp-sec::after{display:none}',
         '#vpMenu .vp-rec{display:none}',
+        '.vp-brand{left:68px!important;top:14px;opacity:1!important;pointer-events:auto!important}',
         '.vp-mob{display:flex;position:fixed;top:12px;left:12px;z-index:1001;width:44px;height:44px;align-items:center;justify-content:center;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(12,6,26,.88);color:#fff;font-size:20px;cursor:pointer}',
         '#vpScrim{display:block;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:999;opacity:0;pointer-events:none;transition:.3s}',
         'html.vp-aberto #vpScrim{opacity:1;pointer-events:auto}',
@@ -417,6 +425,11 @@ if (days && hours && minutes && seconds && bar) {
     var cortina = document.createElement('div');
     cortina.id = 'vpScrim';
 
+    var marca = document.createElement('a');
+    marca.className = 'vp-brand';
+    marca.href = 'index.html';
+    marca.textContent = 'VICE PULSE';
+    document.body.insertBefore(marca, document.body.firstChild);
     document.body.insertBefore(cortina, document.body.firstChild);
     document.body.insertBefore(botao, document.body.firstChild);
     document.body.insertBefore(menu, document.body.firstChild);

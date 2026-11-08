@@ -2210,6 +2210,7 @@ PÁGINA DE REVISTAS
 .revistas-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    align-items: start;
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
@@ -2231,19 +2232,17 @@ PÁGINA DE REVISTAS
     box-shadow: 0 0 35px rgba(255, 60, 160, 0.35);
 }
 
+/* A capa ocupa o cartão de ponta a ponta, na proporção original (sem faixa preta) */
 .revista-capa {
-    height: 380px;
-    background: #0a0a1a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    line-height: 0;
+    background: none;
 }
 
 .revista-capa img {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    height: auto;
     display: block;
+    cursor: zoom-in;
 }
 
 .revista-info {
@@ -2297,9 +2296,6 @@ PÁGINA DE REVISTAS
         height: 40vh;
     }
 
-    .revista-capa {
-        height: 320px;
-    }
 }
 
 @media (max-width: 480px) {
@@ -2312,7 +2308,4 @@ PÁGINA DE REVISTAS
         font-size: 32px;
     }
 
-    .revista-capa {
-        height: 280px;
-    }
 }

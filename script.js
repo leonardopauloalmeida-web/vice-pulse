@@ -216,7 +216,7 @@ if (days && hours && minutes && seconds && bar) {
 // (funciona em qualquer página que tenha capas na linha do tempo)
 // ============================================
 (function () {
-    const capas = document.querySelectorAll(".timeline-capa img");
+    const capas = document.querySelectorAll(".timeline-capa img, .revista-capa img");
     if (capas.length === 0) return;
 
     // Cria a tela escura com a imagem grande (fica escondida até clicar)
@@ -330,7 +330,7 @@ if (days && hours && minutes && seconds && bar) {
         '#vpMenu .vp-cc{margin:0 4px 10px;padding:12px;border-radius:14px;border:1px solid #ff3cac;background:linear-gradient(135deg,rgba(255,60,172,.3),rgba(138,63,252,.1));display:flex;gap:10px;align-items:center}',
         '#vpMenu .vp-cc .n{font-family:"Anton",sans-serif;font-size:34px;line-height:1;color:#ff00ff;text-shadow:0 0 14px rgba(255,0,255,.6);min-width:30px;text-align:center}',
         '#vpMenu .vp-cc small{display:block;font-size:9px;letter-spacing:2px;color:#ff3cac;font-weight:800}',
-        '#vpMenu .vp-cc b{font-size:13px;color:#fff}',
+        '#vpMenu .vp-cc b{font-size:13px;color:#fff;font-variant-numeric:tabular-nums;white-space:nowrap}',
         '#vpMenu .vp-bs{margin:0 4px 8px}',
         '#vpMenu .vp-bs input{width:100%;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.3);color:#fff;padding:0 12px;font:inherit;font-size:13px}',
         '#vpMenu .vp-bs input::placeholder{color:rgba(255,255,255,.5)}',
@@ -340,6 +340,9 @@ if (days && hours && minutes && seconds && bar) {
         '#vpMenu .vp-a .vp-i{font-size:18px;width:22px;text-align:center;flex:none}',
         '#vpMenu .vp-a:hover{color:#fff;background:rgba(255,255,255,.08)}',
         '#vpMenu .vp-a.at{color:#fff;font-weight:700;background:linear-gradient(90deg,rgba(255,60,172,.35),rgba(138,63,252,.2));box-shadow:inset 3px 0 0 #ff3cac}',
+        '#vpMenu .vp-a::before{content:"";position:absolute;left:12px;right:12px;bottom:3px;height:3px;border-radius:3px;background:linear-gradient(90deg,#8a3ffc,#c084fc);box-shadow:0 0 10px rgba(138,63,252,.9);transform:scaleX(0);transform-origin:left;transition:transform .3s}',
+        '#vpMenu .vp-a:hover::before,#vpMenu .vp-a.at::before{transform:scaleX(1)}',
+        'html.vp-rec #vpMenu .vp-a::before{left:10px;right:10px}',
         '#vpMenu .vp-nw{margin-left:auto;font-size:9px;font-weight:800;letter-spacing:1px;background:#ff3cac;color:#fff;border-radius:999px;padding:2px 7px}',
         '#vpMenu .vp-vz{display:none;padding:14px;color:rgba(255,255,255,.6);font-size:13px}',
         /* recolhido */
@@ -422,13 +425,19 @@ if (days && hours && minutes && seconds && bar) {
 
     // ---------- contagem de dias ----------
     var alvo = new Date('2026-11-19T00:00:00-03:00');
+    function dois(n) { return (n < 10 ? '0' : '') + n; }
     function atualizarDias() {
-        var d = Math.ceil((alvo - new Date()) / 86400000);
+        var diff = alvo - new Date();
         var n = document.getElementById('vpDias');
-        if (d > 0) {
+        if (diff > 0) {
+            // mesma conta do relógio da página inicial: dias inteiros + horas, minutos e segundos
+            var d = Math.floor(diff / 86400000);
+            var h = Math.floor(diff / 3600000) % 24;
+            var m = Math.floor(diff / 60000) % 60;
+            var seg = Math.floor(diff / 1000) % 60;
             n.textContent = d;
-            document.getElementById('vpCcPeq').textContent = d === 1 ? 'FALTA' : 'FALTAM';
-            document.getElementById('vpCcTxt').textContent = (d === 1 ? 'dia' : 'dias') + ' para GTA VI';
+            document.getElementById('vpCcPeq').textContent = 'FALTAM';
+            document.getElementById('vpCcTxt').textContent = (d === 1 ? 'dia' : 'dias') + ' • ' + dois(h) + ':' + dois(m) + ':' + dois(seg);
         } else {
             n.textContent = '🎮';
             document.getElementById('vpCcPeq').textContent = 'LANÇADO';
@@ -436,7 +445,7 @@ if (days && hours && minutes && seconds && bar) {
         }
     }
     atualizarDias();
-    setInterval(atualizarDias, 60000);
+    setInterval(atualizarDias, 1000);
 
     // ---------- página atual ----------
     var arq = location.pathname.split('/').pop() || 'index.html';

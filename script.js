@@ -305,3 +305,205 @@ if (days && hours && minutes && seconds && bar) {
         nav.appendChild(link);
     }
 })();
+
+
+// ============================================
+// MENU LATERAL (vidro + seções + contagem + busca)
+// Entra sozinho em TODAS as páginas que carregam o script.js.
+// O menu antigo do topo (.navbar) fica escondido.
+// ============================================
+(function () {
+    if (document.getElementById("vpMenu")) return;
+
+    // ---------- estilo (injetado aqui, não precisa mexer no style.css) ----------
+    var css = [
+        'html{--mw:250px}html.vp-rec{--mw:72px}',
+        'body{padding-left:var(--mw)!important;transition:padding-left .28s}',
+        '.navbar{display:none!important}',
+        '#vpMenu{position:fixed;left:0;top:0;bottom:0;width:var(--mw);z-index:1000;display:flex;flex-direction:column;gap:2px;padding:14px 10px;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;font-family:"Montserrat",sans-serif;',
+        'background:linear-gradient(160deg,rgba(255,60,172,.28),rgba(138,63,252,.22)),rgba(12,6,26,.86);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-right:1px solid rgba(255,255,255,.14);transition:width .28s}',
+        '#vpMenu::-webkit-scrollbar{display:none}',
+        '#vpMenu .vp-hd{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:12px;padding:0 4px}',
+        '#vpMenu .vp-logo{font-family:"Anton",sans-serif;font-size:22px;letter-spacing:1px;color:#ff3cac;text-decoration:none;white-space:nowrap;text-shadow:0 0 14px rgba(255,60,172,.6)}',
+        '#vpMenu .vp-rec{background:none;border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:8px;width:34px;height:34px;cursor:pointer;flex:none}',
+        '#vpMenu .vp-rec:hover{background:rgba(255,255,255,.12)}',
+        '#vpMenu .vp-cc{margin:0 4px 10px;padding:12px;border-radius:14px;border:1px solid #ff3cac;background:linear-gradient(135deg,rgba(255,60,172,.3),rgba(138,63,252,.1));display:flex;gap:10px;align-items:center}',
+        '#vpMenu .vp-cc .n{font-family:"Anton",sans-serif;font-size:34px;line-height:1;color:#ff00ff;text-shadow:0 0 14px rgba(255,0,255,.6);min-width:30px;text-align:center}',
+        '#vpMenu .vp-cc small{display:block;font-size:9px;letter-spacing:2px;color:#ff3cac;font-weight:800}',
+        '#vpMenu .vp-cc b{font-size:13px;color:#fff}',
+        '#vpMenu .vp-bs{margin:0 4px 8px}',
+        '#vpMenu .vp-bs input{width:100%;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.3);color:#fff;padding:0 12px;font:inherit;font-size:13px}',
+        '#vpMenu .vp-bs input::placeholder{color:rgba(255,255,255,.5)}',
+        '#vpMenu .vp-bs input:focus{outline:2px solid #ff3cac;outline-offset:1px}',
+        '#vpMenu .vp-sec{font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.5);font-weight:700;padding:14px 12px 4px;text-transform:uppercase}',
+        '#vpMenu .vp-a{position:relative;display:flex;align-items:center;gap:12px;height:44px;padding:0 12px;border-radius:10px;color:rgba(255,255,255,.72);font-size:14px;font-weight:500;text-decoration:none;white-space:nowrap;transition:.2s;flex:none}',
+        '#vpMenu .vp-a .vp-i{font-size:18px;width:22px;text-align:center;flex:none}',
+        '#vpMenu .vp-a:hover{color:#fff;background:rgba(255,255,255,.08)}',
+        '#vpMenu .vp-a.at{color:#fff;font-weight:700;background:linear-gradient(90deg,rgba(255,60,172,.35),rgba(138,63,252,.2));box-shadow:inset 3px 0 0 #ff3cac}',
+        '#vpMenu .vp-nw{margin-left:auto;font-size:9px;font-weight:800;letter-spacing:1px;background:#ff3cac;color:#fff;border-radius:999px;padding:2px 7px}',
+        '#vpMenu .vp-vz{display:none;padding:14px;color:rgba(255,255,255,.6);font-size:13px}',
+        /* recolhido */
+        'html.vp-rec #vpMenu .vp-tx,html.vp-rec #vpMenu .vp-logo,html.vp-rec #vpMenu .vp-bs,html.vp-rec #vpMenu .vp-cc div,html.vp-rec #vpMenu .vp-nw{display:none}',
+        'html.vp-rec #vpMenu .vp-hd{justify-content:center}',
+        'html.vp-rec #vpMenu .vp-a{justify-content:center;padding:0}',
+        'html.vp-rec #vpMenu .vp-cc{justify-content:center;padding:8px}html.vp-rec #vpMenu .vp-cc .n{font-size:24px}',
+        'html.vp-rec #vpMenu .vp-sec{font-size:0;padding:8px 14px}html.vp-rec #vpMenu .vp-sec::after{content:"";display:block;height:1px;background:rgba(255,255,255,.2)}',
+        'html.vp-rec #vpMenu{overflow:visible}',
+        'html.vp-rec #vpMenu .vp-a:hover::after{content:attr(data-tip);position:absolute;left:calc(100% + 14px);top:50%;transform:translateY(-50%);background:#000;color:#fff;border:1px solid #333;padding:6px 10px;border-radius:8px;font-size:12px;pointer-events:none}',
+        /* celular: gaveta */
+        '.vp-mob,#vpScrim{display:none}',
+        '@media(max-width:900px){',
+        'body{padding-left:0!important;padding-top:64px!important}',
+        '#vpMenu{width:270px;transform:translateX(-100%);transition:transform .3s}',
+        'html.vp-aberto #vpMenu{transform:none}',
+        'html.vp-rec #vpMenu .vp-tx,html.vp-rec #vpMenu .vp-logo,html.vp-rec #vpMenu .vp-bs,html.vp-rec #vpMenu .vp-cc div{display:revert}',
+        'html.vp-rec #vpMenu .vp-a{justify-content:flex-start;padding:0 12px}html.vp-rec #vpMenu .vp-a:hover::after{display:none}',
+        'html.vp-rec #vpMenu .vp-hd{justify-content:space-between}html.vp-rec #vpMenu .vp-sec{font-size:10px;padding:14px 12px 4px}html.vp-rec #vpMenu .vp-sec::after{display:none}',
+        '#vpMenu .vp-rec{display:none}',
+        '.vp-mob{display:flex;position:fixed;top:12px;left:12px;z-index:1001;width:44px;height:44px;align-items:center;justify-content:center;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(12,6,26,.88);color:#fff;font-size:20px;cursor:pointer}',
+        '#vpScrim{display:block;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:999;opacity:0;pointer-events:none;transition:.3s}',
+        'html.vp-aberto #vpScrim{opacity:1;pointer-events:auto}',
+        '}',
+        '@media(prefers-reduced-motion:reduce){#vpMenu,body{transition:none}}'
+    ].join('');
+    var st = document.createElement('style');
+    st.id = 'vpMenuCss';
+    st.textContent = css;
+    document.head.appendChild(st);
+
+    // ---------- lembra se estava recolhido ----------
+    var html = document.documentElement;
+    try { if (localStorage.getItem('vpRecolhido') === '1') html.classList.add('vp-rec'); } catch (e) {}
+
+    // ---------- itens do menu ----------
+    function item(ico, nome, href, arq, hash, extra) {
+        return '<a class="vp-a" href="' + href + '" data-arq="' + arq + '" data-hash="' + hash + '" data-tip="' + nome + '">' +
+               '<span class="vp-i">' + ico + '</span><span class="vp-tx">' + nome + '</span>' + (extra || '') + '</a>';
+    }
+    function sec(t) { return '<div class="vp-sec">' + t + '</div>'; }
+
+    var lista =
+        item('🏠', 'Início', 'index.html', 'index.html', '') +
+        sec('O jogo') +
+        item('🧑‍🤝‍🧑', 'Personagens', 'personagens.html', 'personagens.html', '') +
+        item('🌴', 'GTA Vice City', 'vice-city.html', 'vice-city.html', '') +
+        item('🗺️', 'Mapa', 'index.html#map', 'index.html', '#map') +
+        sec('Novidades') +
+        item('📰', 'Notícias', 'noticias.html', 'noticias.html', '') +
+        item('📖', 'Revistas', 'revistas.html', 'revistas.html', '', '<span class="vp-nw">NOVO</span>') +
+        item('▶️', 'Trailers', 'index.html#trailers', 'index.html', '#trailers') +
+        sec('Bastidores') +
+        item('🎬', 'Diretor', 'diretor.html', 'diretor.html', '');
+
+    var menu = document.createElement('nav');
+    menu.id = 'vpMenu';
+    menu.setAttribute('aria-label', 'Menu principal');
+    menu.innerHTML =
+        '<div class="vp-hd"><a class="vp-logo" href="index.html">VICE PULSE</a>' +
+        '<button class="vp-rec" id="vpRec" aria-label="Recolher ou expandir o menu" title="Recolher menu">⇔</button></div>' +
+        '<div class="vp-cc"><div class="n" id="vpDias">--</div><div><small id="vpCcPeq">FALTAM</small><b id="vpCcTxt">dias para GTA VI</b></div></div>' +
+        '<div class="vp-bs"><input type="search" id="vpBusca" placeholder="Buscar página..." aria-label="Buscar página" autocomplete="off"></div>' +
+        '<div id="vpLista">' + lista + '</div>' +
+        '<div class="vp-vz" id="vpVz">Nenhuma página encontrada</div>';
+
+    var botao = document.createElement('button');
+    botao.className = 'vp-mob';
+    botao.id = 'vpMob';
+    botao.setAttribute('aria-label', 'Abrir menu');
+    botao.textContent = '☰';
+    var cortina = document.createElement('div');
+    cortina.id = 'vpScrim';
+
+    document.body.insertBefore(cortina, document.body.firstChild);
+    document.body.insertBefore(botao, document.body.firstChild);
+    document.body.insertBefore(menu, document.body.firstChild);
+
+    var links = [].slice.call(menu.querySelectorAll('.vp-a'));
+
+    // ---------- contagem de dias ----------
+    var alvo = new Date('2026-11-19T00:00:00-03:00');
+    function atualizarDias() {
+        var d = Math.ceil((alvo - new Date()) / 86400000);
+        var n = document.getElementById('vpDias');
+        if (d > 0) {
+            n.textContent = d;
+            document.getElementById('vpCcPeq').textContent = d === 1 ? 'FALTA' : 'FALTAM';
+            document.getElementById('vpCcTxt').textContent = (d === 1 ? 'dia' : 'dias') + ' para GTA VI';
+        } else {
+            n.textContent = '🎮';
+            document.getElementById('vpCcPeq').textContent = 'LANÇADO';
+            document.getElementById('vpCcTxt').textContent = 'Já disponível!';
+        }
+    }
+    atualizarDias();
+    setInterval(atualizarDias, 60000);
+
+    // ---------- página atual ----------
+    var arq = location.pathname.split('/').pop() || 'index.html';
+    function marcar(hash) {
+        var alvoLink = null;
+        links.forEach(function (a) {
+            var certo = a.dataset.arq === arq && (arq !== 'index.html' ? true : a.dataset.hash === (hash || ''));
+            a.classList.toggle('at', certo);
+            if (certo) alvoLink = a;
+        });
+        if (!alvoLink) {
+            // endereço com outra âncora (ex.: #news): marca a própria página
+            links.forEach(function (a) { a.classList.toggle('at', a.dataset.arq === arq && !a.dataset.hash); });
+        }
+    }
+    marcar(arq === 'index.html' ? location.hash : '');
+    window.addEventListener('hashchange', function () { if (arq === 'index.html') marcar(location.hash); });
+
+    // na página inicial, o item muda conforme você rola (Início, Trailers, Mapa)
+    if (arq === 'index.html' && 'IntersectionObserver' in window) {
+        var marcas = [['.hero', ''], ['#trailers', '#trailers'], ['#map', '#map']];
+        var obs = new IntersectionObserver(function (entradas) {
+            entradas.forEach(function (e) {
+                if (e.isIntersecting) marcar(e.target.dataset.vpHash);
+            });
+        }, { rootMargin: '-40% 0px -50% 0px' });
+        marcas.forEach(function (m) {
+            var el = document.querySelector(m[0]);
+            if (el) { el.dataset.vpHash = m[1]; obs.observe(el); }
+        });
+    }
+
+    // ---------- recolher / expandir ----------
+    document.getElementById('vpRec').addEventListener('click', function () {
+        html.classList.toggle('vp-rec');
+        try { localStorage.setItem('vpRecolhido', html.classList.contains('vp-rec') ? '1' : '0'); } catch (e) {}
+    });
+
+    // ---------- busca ----------
+    var busca = document.getElementById('vpBusca');
+    function filtrar() {
+        var q = busca.value.toLowerCase().trim(), n = 0;
+        [].slice.call(menu.querySelectorAll('#vpLista > *')).forEach(function (el) {
+            if (el.classList.contains('vp-sec')) { el.style.display = q ? 'none' : ''; return; }
+            var ok = el.textContent.toLowerCase().indexOf(q) !== -1;
+            el.style.display = ok ? '' : 'none';
+            if (ok) n++;
+        });
+        document.getElementById('vpVz').style.display = n ? 'none' : 'block';
+    }
+    busca.addEventListener('input', filtrar);
+    document.addEventListener('keydown', function (e) {
+        var tag = (document.activeElement && document.activeElement.tagName) || '';
+        if (e.key === '/' && tag !== 'INPUT' && tag !== 'TEXTAREA') {
+            html.classList.remove('vp-rec');
+            e.preventDefault();
+            busca.focus();
+        }
+        if (e.key === 'Escape') { busca.value = ''; filtrar(); busca.blur(); html.classList.remove('vp-aberto'); }
+        if (e.key === 'Enter' && document.activeElement === busca) {
+            var primeiro = links.filter(function (a) { return a.style.display !== 'none'; })[0];
+            if (primeiro) location.href = primeiro.getAttribute('href');
+        }
+    });
+
+    // ---------- celular: gaveta ----------
+    botao.addEventListener('click', function () { html.classList.add('vp-aberto'); });
+    cortina.addEventListener('click', function () { html.classList.remove('vp-aberto'); });
+    links.forEach(function (a) { a.addEventListener('click', function () { html.classList.remove('vp-aberto'); }); });
+})();

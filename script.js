@@ -529,3 +529,43 @@ if (days && hours && minutes && seconds && bar) {
     cortina.addEventListener('click', function () { html.classList.remove('vp-aberto'); });
     links.forEach(function (a) { a.addEventListener('click', function () { html.classList.remove('vp-aberto'); }); });
 })();
+
+
+// ============================================
+// CAPÍTULOS: entrada suave dos blocos e pontinhos de navegação
+// (só roda em páginas que têm seções com a classe "capitulo")
+// ============================================
+(function () {
+    var caps = [].slice.call(document.querySelectorAll('.hero[data-titulo], .capitulo'));
+    if (caps.length < 3 || !('IntersectionObserver' in window)) return;
+
+    document.documentElement.classList.add('cap-anim');
+
+    // a tela inicial já aparece pronta
+    caps[0].classList.add('visivel');
+
+    // pontinhos na lateral
+    var rail = document.createElement('div');
+    rail.className = 'cap-rail';
+    rail.setAttribute('aria-label', 'Capítulos da página');
+    var botoes = caps.map(function (c, i) {
+        var b = document.createElement('button');
+        b.setAttribute('aria-label', c.getAttribute('data-titulo') || 'Capítulo ' + (i + 1));
+        b.className = i === 0 ? 'on' : '';
+        b.addEventListener('click', function () { c.scrollIntoView({ behavior: 'smooth' }); });
+        rail.appendChild(b);
+        return b;
+    });
+    document.body.appendChild(rail);
+
+    var obs = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            e.target.classList.add('visivel');
+            var i = caps.indexOf(e.target);
+            botoes.forEach(function (b, j) { b.classList.toggle('on', j === i); });
+        });
+    }, { threshold: 0.35 });
+
+    caps.forEach(function (c) { obs.observe(c); });
+})();

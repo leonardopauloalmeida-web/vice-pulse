@@ -63,7 +63,7 @@
     </header>
 
     <!-- HERO / COUNTDOWN -->
-    <section class="hero">
+    <section class="hero" data-titulo="Início">
         <div class="overlay"></div>
         <div class="hero-content">
             <h1>GTA VI</h1>
@@ -88,15 +88,16 @@
             </div>
             <p class="release">LANÇAMENTO • 19 DE NOVEMBRO DE 2026</p>
         </div>
+        <a href="#news" class="rolar" aria-label="Rolar para as notícias">ROLE ↓</a>
     </section>
 
     <!-- ============================================
     NOTÍCIAS
     ============================================ -->
 
-    <section id="news" class="section">
+    <section id="news" class="section capitulo" data-titulo="Notícias">
         <h2>Últimas Notícias</h2>
-        <div class="cards">
+        <div class="cards rv">
 
             <!-- NOTÍCIA 1 -->
             <article class="card">
@@ -138,9 +139,9 @@
     CAPA OFICIAL + LINK PERSONAGENS EMBAIXO
     ============================================ -->
 
-    <section id="capa" class="section capa-section">
+    <section id="capa" class="section capa-section capitulo" data-titulo="Capa oficial">
         <h2>Capa Oficial</h2>
-        <div class="cards">
+        <div class="cards rv">
             <div class="card">
                 <img src="assets/capa-oficial-gta6.jpg" alt="Capa oficial de GTA VI" loading="lazy">
                 <p class="credito-imagem">📸 Imagem reproduzida pela Rockstar Games</p>
@@ -158,14 +159,86 @@
         </div>
     </section>
 
+
+    <!-- ============================================
+    PERSONAGENS (resumo do que tem na página de personagens)
+    ============================================ -->
+
+    <section id="personagens" class="section capitulo" data-titulo="Personagens">
+        <h2>Personagens</h2>
+        <div class="portal">
+            <div class="portal-texto rv">
+                <p>Conheça Lucia e Jason Duval, os protagonistas de GTA VI, e o elenco de Leonida: lendas locais, produtores musicais, ladrões de bancos e contrabandistas.</p>
+                <a href="personagens.html" class="vice-btn">Ver o elenco completo →</a>
+            </div>
+            <div class="portal-imgs duplo rv">
+                <a href="personagens.html"><img src="assets/lucia.jpg" alt="Lucia - GTA VI" loading="lazy"></a>
+                <a href="personagens.html"><img src="assets/jason.jpg" alt="Jason - GTA VI" loading="lazy"></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+    GTA VICE CITY
+    ============================================ -->
+
+    <section id="vice-city" class="section capitulo" data-titulo="Vice City">
+        <h2>GTA Vice City</h2>
+        <div class="portal">
+            <div class="portal-texto rv">
+                <p>Bem-vindo aos anos 80. Da década de penteados glam, dos excessos e dos ternos pastel, vem a história de um homem que sobe ao topo da cadeia criminal. Relembre Vice City e Vice City Stories antes de voltar à cidade.</p>
+                <a href="vice-city.html" class="vice-btn">Ver a história de Vice City →</a>
+            </div>
+            <div class="portal-imgs rv">
+                <a href="vice-city.html"><img src="assets/vice.jpg" alt="GTA Vice City - Capa Clássica" loading="lazy"></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+    DIRETOR
+    ============================================ -->
+
+    <section id="diretor" class="section capitulo" data-titulo="Diretor">
+        <h2>Rob Nelson</h2>
+        <div class="portal">
+            <div class="portal-texto rv">
+                <p>Co-Studio Head e Head of Development da Rockstar North. Entrou na Rockstar em 2003, na Rockstar Toronto, e trabalhou em quase todos os grandes títulos da empresa, de Bully a Red Dead Redemption II.</p>
+                <a href="diretor.html" class="vice-btn">Ver a linha do tempo →</a>
+            </div>
+            <div class="portal-imgs rv">
+                <a href="diretor.html"><img src="assets/rob-nelson.webp" alt="Rob Nelson - Diretor de GTA VI" loading="lazy"></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+    REVISTAS
+    ============================================ -->
+
+    <section id="revistas" class="section capitulo" data-titulo="Revistas">
+        <h2>Revistas</h2>
+        <div class="portal portal-largo">
+            <div class="portal-texto rv">
+                <p>Quem entrevistou a Rockstar sobre GTA VI: Edge, Game Informer e Dazed. Veja os destaques de cada matéria.</p>
+                <a href="revistas.html" class="vice-btn">Ver as revistas →</a>
+            </div>
+            <div class="portal-imgs triplo rv">
+                <a href="revistas.html"><img src="assets/capa-edge.jpeg" alt="Capa da revista Edge, edição 430" loading="lazy"></a>
+                <a href="revistas.html"><img src="assets/capa-game-informer.jpg" alt="Capa da revista Game Informer, edição 382" loading="lazy"></a>
+                <a href="revistas.html"><img src="assets/capa-dazed.webp" alt="Capa da revista Dazed, edição de outono de 2026" loading="lazy"></a>
+            </div>
+        </div>
+    </section>
+
     <!-- ============================================
     TRAILERS
     (cada card usa o MESMO link na imagem e no botão)
     ============================================ -->
 
-    <section id="trailers" class="section">
+    <section id="trailers" class="section capitulo" data-titulo="Trailers">
         <h2>Trailers Oficiais</h2>
-        <div class="video-grid">
+        <div class="video-grid rv">
 
             <!-- TRAILER 1 -->
             <div class="video-card video-thumb">
@@ -232,30 +305,31 @@
             </div>
 
 
-           <!-- TRAILER 5 - PRÉ-CARREGAMENTO -->
-<div class="video-card video-thumb">
-    <a href="https://www.youtube.com/watch?v=_yl5ELcmugI" target="_blank" rel="noopener noreferrer" class="thumb-link">
-        <img src="https://img.youtube.com/vi/_yl5ELcmugI/maxresdefault.jpg" alt="GTA VI Trailer do pré-carregamento" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/_yl5ELcmugI/hqdefault.jpg'">
-        <div class="play-overlay">
-            <div class="play-btn">▶</div>
+            <!-- TRAILER 5 - PRÉ-CARREGAMENTO -->
+            <div class="video-card video-thumb">
+                <a href="https://www.youtube.com/watch?v=sXCiA142w8Y" target="_blank" rel="noopener noreferrer" class="thumb-link">
+                    <img src="https://img.youtube.com/vi/sXCiA142w8Y/maxresdefault.jpg" alt="GTA VI Trailer do pré-carregamento" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/sXCiA142w8Y/hqdefault.jpg'">
+                    <div class="play-overlay">
+                        <div class="play-btn">▶</div>
+                    </div>
+                </a>
+                <div class="content">
+                    <span class="tag">NOVO • PRÉ-CARREGAMENTO</span>
+                    <h3>Trailer do Pré-carregamento</h3>
+                    <p>Novo trailer divulgado pela Rockstar junto com a abertura do pré-carregamento, em 10 de novembro, nove dias antes do lançamento.</p>
+                    <a href="https://www.youtube.com/watch?v=sXCiA142w8Y" target="_blank" rel="noopener noreferrer" class="watch-btn">ASSISTIR NO YOUTUBE</a>
+                </div>
+            </div>
         </div>
-    </a>
-    <div class="content">
-        <span class="tag">NOVO • PRÉ-CARREGAMENTO</span>
-        <h3>Trailer do Pré-carregamento</h3>
-        <p>Novo trailer divulgado pela Rockstar junto com a abertura do pré-carregamento, em 10 de novembro, nove dias antes do lançamento.</p>
-        <a href="https://www.youtube.com/watch?v=_yl5ELcmugI" target="_blank" rel="noopener noreferrer" class="watch-btn">ASSISTIR NO YOUTUBE</a>
-    </div>
-</div>
     </section>
 
     <!-- ============================================
     MAPA
     ============================================ -->
 
-    <section id="map" class="section">
+    <section id="map" class="section capitulo" data-titulo="Mapa">
         <h2>Mapa de Leonida</h2>
-        <div class="map-card">
+        <div class="map-card rv">
             <img src="assets/mapa-leonida.jpg" alt="Mapa de Leonida - GTA VI" loading="lazy">
             <p class="credito-imagem">📸 Imagem reproduzida pela Rockstar Games</p>
         </div>

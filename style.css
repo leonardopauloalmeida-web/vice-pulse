@@ -1337,7 +1337,8 @@ PÁGINA DE NOTÍCIAS
     align-items: center;
     gap: 6px;
 }
-
+.noticia-card .tag[data-categoria="CLIMA"] { background: linear-gradient(90deg, #1a3754, #0984e3);
+ }
 .noticia-fonte-final::before {
     content: '📰';
     font-size: 14px;
@@ -2291,4 +2292,222 @@ PÁGINA DE REVISTAS
 .timeline-capa img,
 .revista-capa img {
     cursor: zoom-in;
+}
+
+/* ============================================
+CAPÍTULOS (página inicial em tela cheia)
+As cores e as imagens do site continuam as mesmas.
+============================================ */
+
+html {
+    scroll-snap-type: y proximity;
+}
+
+body {
+    counter-reset: cap 1;
+}
+
+.hero,
+.section.capitulo {
+    scroll-snap-align: start;
+}
+
+.hero {
+    position: relative;
+}
+
+.section.capitulo {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 90px 7% 70px;
+    opacity: 1;
+    transform: none;
+    animation: none;
+}
+
+/* título gigante com o número do capítulo */
+.section.capitulo > h2 {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    font-size: clamp(2.6rem, 7vw, 5.4rem);
+    line-height: 0.95;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    text-shadow: 0 0 40px rgba(255, 60, 172, 0.25);
+}
+
+.section.capitulo > h2::before {
+    counter-increment: cap;
+    content: "0" counter(cap);
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.2em;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--orange);
+    border: 1px solid rgba(255, 138, 61, 0.55);
+    border-radius: 999px;
+    padding: 5px 13px;
+    transform: translateY(-0.5em);
+}
+
+/* brilho suave atrás de cada capítulo, nas cores do site */
+.section.capitulo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(ellipse at 15% 20%, rgba(255, 60, 172, 0.1), transparent 55%);
+}
+
+.section.capitulo:nth-of-type(even)::before {
+    background: radial-gradient(ellipse at 85% 80%, rgba(138, 63, 252, 0.12), transparent 55%);
+}
+
+/* chamada para rolar, no fim da tela inicial */
+.rolar {
+    position: absolute;
+    bottom: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    opacity: 0.8;
+    animation: rolarPulo 1.8s ease-in-out infinite;
+}
+
+@keyframes rolarPulo {
+    50% { transform: translate(-50%, 8px); opacity: 1; }
+}
+
+/* cartões que levam para as outras páginas */
+.portal {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 36px;
+    align-items: center;
+}
+
+.portal-largo {
+    grid-template-columns: 0.8fr 1.4fr;
+}
+
+.portal-texto p {
+    font-size: clamp(15px, 1.8vw, 19px);
+    line-height: 1.75;
+    opacity: 0.88;
+    max-width: 500px;
+    margin-bottom: 24px;
+}
+
+.portal-imgs {
+    display: grid;
+    gap: 16px;
+}
+
+.portal-imgs.duplo { grid-template-columns: 1fr 1fr; }
+.portal-imgs.triplo { grid-template-columns: repeat(3, 1fr); }
+
+.portal-imgs img {
+    width: 100%;
+    max-height: 62vh;
+    object-fit: cover;
+    display: block;
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform 0.35s, box-shadow 0.35s;
+}
+
+.portal-imgs a:hover img {
+    transform: translateY(-6px);
+    box-shadow: 0 0 40px rgba(255, 60, 160, 0.35);
+}
+
+@media (max-width: 860px) {
+    .portal,
+    .portal-largo { grid-template-columns: 1fr; gap: 22px; }
+    .portal-imgs img { max-height: 46vh; }
+}
+
+/* entrada suave dos blocos (só liga quando o JavaScript estiver ativo) */
+html.cap-anim .section.capitulo > h2,
+html.cap-anim .rv {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+html.cap-anim .capitulo.visivel > h2,
+html.cap-anim .capitulo.visivel .rv {
+    opacity: 1;
+    transform: none;
+}
+
+html.cap-anim .capitulo.visivel .rv { transition-delay: 0.12s; }
+
+/* pontinhos de navegação na lateral direita */
+.cap-rail {
+    position: fixed;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 900;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cap-rail button {
+    position: relative;
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    background: transparent;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cap-rail button.on {
+    background: var(--pink);
+    border-color: var(--pink);
+    transform: scale(1.4);
+    box-shadow: 0 0 12px var(--pink);
+}
+
+.cap-rail button:hover::after {
+    content: attr(aria-label);
+    position: absolute;
+    right: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #000;
+    color: #fff;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+    .section.capitulo { padding: 84px 5% 50px; }
+    .cap-rail { right: 8px; gap: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-snap-type: none; }
+    .rolar { animation: none; }
+    html.cap-anim .section.capitulo > h2,
+    html.cap-anim .rv { opacity: 1; transform: none; transition: none; }
 }

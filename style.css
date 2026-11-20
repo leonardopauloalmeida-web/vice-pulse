@@ -99,7 +99,7 @@ NAVBAR
 }
 
 /* ============================================
-HERO / CONTAGEM
+HERO / LANÇAMENTO
 ============================================ */
 
 .hero {
@@ -155,88 +155,39 @@ HERO / CONTAGEM
     text-transform: uppercase;
 }
 
-.days {
-    font-size: clamp(70px, 11vw, 110px);
-    font-weight: 700;
-    color: #ff00ff;
-    text-shadow:
-        0 0 30px rgba(255, 0, 255, 0.6),
-        0 0 60px rgba(255, 0, 255, 0.3),
-        0 0 100px rgba(255, 0, 255, 0.15);
-    margin-top: 6px;
-    animation: neonPulse 2s ease-in-out infinite;
-    font-family: "Anton", sans-serif;
-    letter-spacing: 4px;
-}
-
-@keyframes neonPulse {
-    0%, 100% {
-        text-shadow:
-            0 0 20px rgba(255, 0, 255, 0.5),
-            0 0 40px rgba(255, 0, 255, 0.2);
-    }
-    50% {
-        text-shadow:
-            0 0 40px rgba(255, 0, 255, 0.8),
-            0 0 80px rgba(255, 0, 255, 0.4),
-            0 0 120px rgba(255, 0, 255, 0.2);
-    }
-}
-
-.timer {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin-top: 12px;
-}
-
-.timer div {
-    background: rgba(255, 0, 255, 0.05);
-    border: 1px solid rgba(255, 0, 255, 0.1);
-    border-radius: 12px;
-    padding: 8px 6px;
-    transition: 0.3s;
-}
-
-.timer div:hover {
-    transform: translateY(-3px);
-    background: rgba(255, 0, 255, 0.1);
-    border-color: rgba(255, 0, 255, 0.3);
+/* NOVO CONTADOR DE DIAS */
+.launched-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+    padding: 12px 28px;
+    background: rgba(255, 0, 255, 0.08);
+    border: 1px solid rgba(255, 0, 255, 0.25);
+    border-radius: 999px;
+    backdrop-filter: blur(10px);
     box-shadow: 0 0 30px rgba(255, 0, 255, 0.1);
 }
 
-.timer span {
-    display: block;
-    font-size: clamp(18px, 2.5vw, 24px);
-    font-weight: 700;
-    color: #ff00ff;
-    text-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
-    font-family: "Anton", sans-serif;
+.launched-label {
+    font-size: 11px;
     letter-spacing: 2px;
-}
-
-.timer small {
-    font-size: clamp(7px, 0.8vw, 9px);
-    letter-spacing: 2px;
-    opacity: 0.5;
-    color: #ff00ff;
     text-transform: uppercase;
+    opacity: 0.75;
+    color: #ff00ff;
+    font-weight: 600;
 }
 
-.progress {
-    margin-top: 16px;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 999px;
-    overflow: hidden;
-}
-
-#bar {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #ff00ff, #ff0080);
-    box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
-    transition: width 0.5s ease;
+.days-since {
+    font-family: "Anton", sans-serif;
+    font-size: 38px;
+    color: #ff00ff;
+    text-shadow: 
+        0 0 20px rgba(255, 0, 255, 0.5),
+        0 0 40px rgba(255, 0, 255, 0.2);
+    line-height: 1;
+    letter-spacing: 2px;
 }
 
 .release {
@@ -663,7 +614,7 @@ PÁGINA VICE CITY - RETRÔ ANOS 80
 }
 
 /* ============================================
-PÁGINA DE PERSONAGENS - ESTILO VICE CITY
+PÁGINA DE PERSONAGENS
 ============================================ */
 
 .personagens-hero {
@@ -1025,7 +976,6 @@ PÁGINA DO DIRETOR (ROB NELSON)
     margin-top: 2px;
 }
 
-/* CAPAS PEQUENAS NA LINHA DO TEMPO */
 .timeline-content {
     display: flex;
     align-items: center;
@@ -1047,7 +997,6 @@ PÁGINA DO DIRETOR (ROB NELSON)
     transition: 0.3s;
 }
 
-/* contain = a capa aparece INTEIRA, sem cortar */
 .timeline-capa img {
     width: 100%;
     height: 100%;
@@ -1056,7 +1005,6 @@ PÁGINA DO DIRETOR (ROB NELSON)
     cursor: zoom-in;
 }
 
-/* LIGHTBOX (capa em tela cheia ao clicar) */
 .lightbox {
     position: fixed;
     inset: 0;
@@ -1337,8 +1285,7 @@ PÁGINA DE NOTÍCIAS
     align-items: center;
     gap: 6px;
 }
-.noticia-card .tag[data-categoria="CLIMA"] { background: linear-gradient(90deg, #1a3754, #0984e3);
- }
+
 .noticia-fonte-final::before {
     content: '📰';
     font-size: 14px;
@@ -1346,7 +1293,6 @@ PÁGINA DE NOTÍCIAS
 
 /* ============================================
 RESPONSIVIDADE
-(telas pequenas ficam no fim para vencer as regras acima)
 ============================================ */
 
 @media (max-width: 1024px) {
@@ -1434,20 +1380,17 @@ RESPONSIVIDADE
         font-size: clamp(32px, 6vw, 48px);
     }
 
-    .days {
-        font-size: clamp(50px, 10vw, 80px);
+    .launched-badge {
+        padding: 10px 20px;
+        gap: 8px;
     }
 
-    .timer span {
-        font-size: 18px;
+    .days-since {
+        font-size: 30px;
     }
 
-    .timer div {
-        padding: 6px 4px;
-    }
-
-    .timer small {
-        font-size: 8px;
+    .launched-label {
+        font-size: 10px;
     }
 
     .release {
@@ -1594,33 +1537,18 @@ RESPONSIVIDADE
         letter-spacing: 2px;
     }
 
-    .days {
-        font-size: 40px;
-        margin-top: 2px;
+    .launched-badge {
+        padding: 8px 16px;
+        gap: 6px;
     }
 
-    .timer {
-        gap: 5px;
-        margin-top: 10px;
+    .days-since {
+        font-size: 24px;
     }
 
-    .timer span {
-        font-size: 14px;
-    }
-
-    .timer div {
-        padding: 5px 3px;
-        border-radius: 8px;
-    }
-
-    .timer small {
-        font-size: 7px;
-        letter-spacing: 0.5px;
-    }
-
-    .progress {
-        margin-top: 10px;
-        height: 4px;
+    .launched-label {
+        font-size: 9px;
+        letter-spacing: 1px;
     }
 
     .release {
@@ -1785,16 +1713,8 @@ RESPONSIVIDADE
         font-size: 24px;
     }
 
-    .days {
-        font-size: 36px;
-    }
-
-    .timer span {
-        font-size: 12px;
-    }
-
-    .timer small {
-        font-size: 6px;
+    .days-since {
+        font-size: 20px;
     }
 
     .release {
@@ -1818,16 +1738,12 @@ RESPONSIVIDADE
         font-size: clamp(38px, 6vw, 56px);
     }
 
-    .days {
-        font-size: clamp(60px, 10vw, 90px);
+    .launched-badge {
+        margin-top: 16px;
     }
 
-    .timer span {
-        font-size: 20px;
-    }
-
-    .timer div {
-        padding: 8px 5px;
+    .days-since {
+        font-size: 32px;
     }
 
     .release {
@@ -1851,9 +1767,13 @@ RESPONSIVIDADE
         font-size: clamp(32px, 5vw, 44px);
     }
 
-    .days {
-        font-size: clamp(50px, 8vw, 70px);
-        margin-top: 2px;
+    .launched-badge {
+        margin-top: 12px;
+        padding: 8px 20px;
+    }
+
+    .days-since {
+        font-size: 28px;
     }
 
     .subtitle {
@@ -1861,81 +1781,9 @@ RESPONSIVIDADE
         letter-spacing: 2px;
     }
 
-    .timer {
-        gap: 6px;
-        margin-top: 10px;
-    }
-
-    .timer span {
-        font-size: 16px;
-    }
-
-    .timer div {
-        padding: 5px 3px;
-    }
-
-    .timer small {
-        font-size: 7px;
-    }
-
-    .progress {
-        margin-top: 12px;
-        height: 5px;
-    }
-
     .release {
         font-size: 9px;
         margin-top: 8px;
-    }
-}
-
-/* ============================================
-ANIMAÇÃO DE LANÇAMENTO (contagem chegou a zero)
-============================================ */
-
-.hero.celebrando {
-    overflow: hidden;
-}
-
-.anel-neon {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 60px;
-    height: 60px;
-    margin: -30px 0 0 -30px;
-    border: 3px solid #ff2e93;
-    border-radius: 50%;
-    opacity: 0.9;
-    pointer-events: none;
-    animation: anelExpande 2.8s ease-out forwards;
-}
-
-@keyframes anelExpande {
-    to {
-        transform: scale(22);
-        opacity: 0;
-    }
-}
-
-.subtitle.disponivel {
-    opacity: 1;
-    color: #fff;
-    font-family: "Anton", sans-serif;
-    font-size: clamp(18px, 3vw, 28px);
-    letter-spacing: 4px;
-    text-shadow: 0 0 20px #ff2e93, 0 0 40px #ff7a2f;
-    animation: disponivelPop 0.7s cubic-bezier(0.2, 1.6, 0.4, 1) both;
-}
-
-@keyframes disponivelPop {
-    from {
-        opacity: 0;
-        transform: scale(0.6);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
     }
 }
 
@@ -1953,7 +1801,6 @@ ABERTURA DO SITE (pôr do sol + letreiro neon)
     transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-/* A classe "com-abertura" é ligada no <head> do index.html */
 html.com-abertura .abertura {
     display: block;
 }
@@ -2110,7 +1957,6 @@ html.com-abertura body {
     }
 }
 
-/* Quem prefere menos movimento: tudo já aparece pronto */
 @media (prefers-reduced-motion: reduce) {
     .ab-sol,
     .ab-grade,
@@ -2202,7 +2048,6 @@ PÁGINA DE REVISTAS
     box-shadow: 0 0 35px rgba(255, 60, 160, 0.35);
 }
 
-/* A capa ocupa o cartão de ponta a ponta, na proporção original (sem faixa preta) */
 .revista-capa {
     line-height: 0;
     background: none;
@@ -2265,7 +2110,6 @@ PÁGINA DE REVISTAS
         min-height: 40vh;
         height: 40vh;
     }
-
 }
 
 @media (max-width: 480px) {
@@ -2277,10 +2121,8 @@ PÁGINA DE REVISTAS
     .revistas-hero h1 {
         font-size: 32px;
     }
-
 }
 
-/* Todas as fotos do site que abrem grandes ao clicar */
 .card img,
 .personagem-imagem img,
 .character-card img,
@@ -2296,7 +2138,6 @@ PÁGINA DE REVISTAS
 
 /* ============================================
 CAPÍTULOS (página inicial em tela cheia)
-As cores e as imagens do site continuam as mesmas.
 ============================================ */
 
 html {
@@ -2329,7 +2170,6 @@ body {
     animation: none;
 }
 
-/* título gigante com o número do capítulo */
 .section.capitulo > h2 {
     display: flex;
     align-items: baseline;
@@ -2356,7 +2196,6 @@ body {
     transform: translateY(-0.5em);
 }
 
-/* brilho suave atrás de cada capítulo, nas cores do site */
 .section.capitulo::before {
     content: "";
     position: absolute;
@@ -2370,7 +2209,6 @@ body {
     background: radial-gradient(ellipse at 85% 80%, rgba(138, 63, 252, 0.12), transparent 55%);
 }
 
-/* chamada para rolar, no fim da tela inicial */
 .rolar {
     position: absolute;
     bottom: 26px;
@@ -2390,7 +2228,6 @@ body {
     50% { transform: translate(-50%, 8px); opacity: 1; }
 }
 
-/* cartões que levam para as outras páginas */
 .portal {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
@@ -2439,7 +2276,6 @@ body {
     .portal-imgs img { max-height: 46vh; }
 }
 
-/* entrada suave dos blocos (só liga quando o JavaScript estiver ativo) */
 html.cap-anim .section.capitulo > h2,
 html.cap-anim .rv {
     opacity: 0;
@@ -2455,7 +2291,6 @@ html.cap-anim .capitulo.visivel .rv {
 
 html.cap-anim .capitulo.visivel .rv { transition-delay: 0.12s; }
 
-/* pontinhos de navegação na lateral direita */
 .cap-rail {
     position: fixed;
     right: 14px;
